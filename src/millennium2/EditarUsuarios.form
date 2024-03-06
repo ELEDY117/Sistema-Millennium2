@@ -310,9 +310,6 @@
             <Component class="javax.swing.JTextField" name="numeroIdentificacionTF">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroIdentificacionTFActionPerformed"/>
@@ -385,10 +382,7 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Adminstrador"/>
-                    <StringItem index="1" value="Recepcionista"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -576,7 +570,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Administrador"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="LoginLogo">

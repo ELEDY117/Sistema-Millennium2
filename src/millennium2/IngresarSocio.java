@@ -81,8 +81,6 @@ public class IngresarSocio extends javax.swing.JFrame {
         botonMenu = new javax.swing.JButton();
         panelDeLista = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        botonEliminar = new javax.swing.JButton();
-        botonEditar = new javax.swing.JButton();
         numeroIdentificacionJL = new javax.swing.JLabel();
         nombreJL = new javax.swing.JLabel();
         telefonoJL = new javax.swing.JLabel();
@@ -113,7 +111,6 @@ public class IngresarSocio extends javax.swing.JFrame {
         administradorJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         administradorJL.setForeground(new java.awt.Color(255, 255, 255));
         administradorJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        administradorJL.setText("Administrador");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -128,7 +125,7 @@ public class IngresarSocio extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Registrar Nuevo Socio");
+        jLabel2.setText("Ingresar Nuevo Socio");
 
         botonMenu.setBackground(new java.awt.Color(9, 17, 43));
         botonMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,34 +171,6 @@ public class IngresarSocio extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Datos del Socio");
-
-        botonEliminar.setBackground(new java.awt.Color(166, 44, 26));
-        botonEliminar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setBorder(null);
-        botonEliminar.setBorderPainted(false);
-        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEliminar.setPreferredSize(new java.awt.Dimension(75, 30));
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
-
-        botonEditar.setBackground(new java.awt.Color(166, 44, 26));
-        botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonEditar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEditar.setText("Editar");
-        botonEditar.setBorder(null);
-        botonEditar.setBorderPainted(false);
-        botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEditar.setPreferredSize(new java.awt.Dimension(75, 30));
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActionPerformed(evt);
-            }
-        });
 
         numeroIdentificacionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         numeroIdentificacionJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -311,7 +280,7 @@ public class IngresarSocio extends javax.swing.JFrame {
         contactoEmergenciaJL1.setPreferredSize(new java.awt.Dimension(100, 20));
 
         estatusCbx.setBackground(new java.awt.Color(242, 242, 242));
-        estatusCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Al dia", "Pendiente" }));
+        estatusCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Al dia" }));
         estatusCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         estatusCbx.setPreferredSize(new java.awt.Dimension(70, 22));
 
@@ -346,60 +315,57 @@ public class IngresarSocio extends javax.swing.JFrame {
         panelDeLista.setLayout(panelDeListaLayout);
         panelDeListaLayout.setHorizontalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDeListaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelDeListaLayout.createSequentialGroup()
+                            .addComponent(inscripcionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(inscripcionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelDeListaLayout.createSequentialGroup()
                             .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addComponent(inscripcionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inscripcionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(contactoEmergenciaTF)
-                                        .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(numeroIdentificacionTF)
-                                            .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoPaternoTF)
-                                            .addComponent(apellidoMaternoTF)
-                                            .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(contactoEmergenciaTF)
+                                .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(numeroIdentificacionTF)
+                                    .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(apellidoPaternoTF)
+                                    .addComponent(apellidoMaternoTF)
+                                    .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
                         .addComponent(direccionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(direccionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))))
+                        .addGap(99, 99, 99))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
+                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(196, 196, 196))))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,12 +408,9 @@ public class IngresarSocio extends javax.swing.JFrame {
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -483,33 +446,6 @@ public class IngresarSocio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
-         try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "DELETE FROM SOCIOS WHERE ID_SOCIO=?";
-            pst = con.prepareStatement(sql);
-            pst.setString(1, numeroIdentificacionTF.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos Eliminados");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se puede eliminar el socio, revise la infromación");
-        }
-    }//GEN-LAST:event_botonEliminarActionPerformed
-
-    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
-        String domicilio = id_domicilio();
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("UPDATE SOCIOS SET DOMICILIO_FK='" + domicilio + "', ID_ESTATUS_FK='" + estatusCbx.getSelectedIndex()+1 + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos Modificados");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se han podido actualizar los datos, revise la información");
-        }
-    }//GEN-LAST:event_botonEditarActionPerformed
-
     private void numeroIdentificacionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numeroIdentificacionTFActionPerformed
@@ -527,23 +463,51 @@ public class IngresarSocio extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql1 = "INSERT INTO SOCIOS(ID_SOCIO, ID_ESTATUS_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, DOMICILIO_FK, INSCRIPCION) VALUES(?,?,?,?,?,?,?,?,?)";
             pst = con.prepareStatement(sql1);
+            if(numeroIdentificacionTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Ecriba el numero de identificacion del socio");
+            }else{
             pst.setString(1, numeroIdentificacionTF.getText());
+            }
             pst.setInt(2, estatusCbx.getSelectedIndex()+1);
+            if(nombreTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
+            }else{
             pst.setString(3, nombreTF.getText());
+            }
+            if(apellidoPaternoTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+            }else{
             pst.setString(4, apellidoPaternoTF.getText());
+            }
+            if(apellidoMaternoTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+            }else{
             pst.setString(5, apellidoMaternoTF.getText());
+            }
+            if(telefonoTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
+            }else{
             pst.setString(6, telefonoTF.getText());
+            }
+            if(contactoEmergenciaTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
+            }else{
             pst.setString(7, contactoEmergenciaTF.getText());
+            }
             pst.setString(8, domicilio);
+            if(inscripcionTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Escriba la fecha de inscripcion del socio");
+            }else{
             pst.setString(9, inscripcionTF.getText());
+            }
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se han insertado los datos");
+            JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
             
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1400) {
                 JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
             } else if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "El socio ya se encuentra en la base de datos, revise la información");
+                JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta igresar ya existe");
             } else {
                 JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }
@@ -572,7 +536,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -584,7 +548,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -596,7 +560,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -667,7 +631,7 @@ public class IngresarSocio extends javax.swing.JFrame {
     private void RellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA");
+            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -707,8 +671,6 @@ public class IngresarSocio extends javax.swing.JFrame {
     private javax.swing.JTextField apellidoMaternoTF;
     private javax.swing.JLabel apellidoPaternoJL;
     private javax.swing.JTextField apellidoPaternoTF;
-    private javax.swing.JButton botonEditar;
-    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonMenu;
     private javax.swing.JLabel contactoEmergenciaJL;

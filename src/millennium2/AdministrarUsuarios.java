@@ -367,14 +367,13 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
     public void rellenarUsuarios() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_USUARIOS, CONTRASENA, NOMBREUSUARIO , TIPO_USUARIO, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO FROM USUARIOS, TIPO_USUARIOS WHERE USUARIOS.TIPO_USUARIO_FK = TIPO_USUARIOS.ID_TIPOUSUARIO AND ID_USUARIOS='" + id_Usuarios + "'ORDER BY ID_USUARIOS ASC";
+            String sql = "SELECT ID_USUARIOS, CONTRASENA, NOMBREUSUARIO , TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO FROM USUARIOS WHERE ID_USUARIOS='" + id_Usuarios + "'";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             
             while(rs.next()){
                 contrasena = rs.getString("CONTRASENA");
                 nombreUsuario = rs.getString("NOMBREUSUARIO");
-                tipoUsuario = rs.getString("TIPO_USUARIO");
                 nombre = rs.getString("NOMBRE");
                 paterno = rs.getString("APELLIDO_P");
                 materno = rs.getString("APELLIDO_M");
@@ -391,6 +390,15 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 var ID_NUMERO = rs.getString("NUMERO");
                 var ID_COLONIA = rs.getString("COLONIA");
                 domicilio = (ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
+            }
+            
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
+            pst = con.prepareStatement("SELECT TIPO_USUARIO FROM TIPO_USUARIOS, USUARIOS WHERE USUARIOS.TIPO_USUARIO_FK = TIPO_USUARIOS.ID_TIPOUSUARIO AND ID_USUARIOS='" + id_Usuarios + "' ORDER BY ID_TIPOUSUARIO ASC");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                var tu = rs.getString("TIPO_USUARIO");
+                tipoUsuario = tu;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);

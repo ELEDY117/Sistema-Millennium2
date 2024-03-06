@@ -140,7 +140,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Recepcionista"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="LoginLogo">

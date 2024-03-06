@@ -33,7 +33,8 @@ public class EditarSocio extends javax.swing.JFrame {
     public EditarSocio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        RellenarCbxDomicilio();
+        rellenarCbxDomicilio();
+        rellenarCbxEstatus();
         AdministrarSocios ventana = new AdministrarSocios();
         numeroIdentificacionTF.setText(ventana.id_Socios);
         nombreTF.setText(ventana.nombre);
@@ -50,7 +51,7 @@ public class EditarSocio extends javax.swing.JFrame {
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild(new DrawerItem("Registrar Nuevo Socio").build())
+                .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
                 .event(new EventDrawer(){
@@ -58,7 +59,7 @@ public class EditarSocio extends javax.swing.JFrame {
                     public void selected(int i, DrawerItem di){
                         switch (i){
                             case 0:
-                                IngresarSocio mf = new IngresarSocio();
+                                AdministrarSocios mf = new AdministrarSocios();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 edSo.dispose();
@@ -123,7 +124,6 @@ public class EditarSocio extends javax.swing.JFrame {
         administradorJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         administradorJL.setForeground(new java.awt.Color(255, 255, 255));
         administradorJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        administradorJL.setText("Administrador");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -220,7 +220,6 @@ public class EditarSocio extends javax.swing.JFrame {
         direccionJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setEditable(false);
-        numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
         numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numeroIdentificacionTFActionPerformed(evt);
@@ -322,7 +321,6 @@ public class EditarSocio extends javax.swing.JFrame {
         contactoEmergenciaJL1.setPreferredSize(new java.awt.Dimension(100, 20));
 
         estatusCbx.setBackground(new java.awt.Color(242, 242, 242));
-        estatusCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Al dia", "Pendiente" }));
         estatusCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         estatusCbx.setPreferredSize(new java.awt.Dimension(70, 22));
 
@@ -483,13 +481,14 @@ public class EditarSocio extends javax.swing.JFrame {
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
         String domicilio = id_domicilio();
+        String estatusLocal = id_estatus();
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("UPDATE SOCIOS SET DOMICILIO_FK='" + domicilio + "', ID_ESTATUS_FK='" + estatusCbx.getSelectedIndex()+1 + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+            pst = con.prepareStatement("UPDATE SOCIOS SET DOMICILIO_FK='" + domicilio + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos Modificados");
+            JOptionPane.showMessageDialog(null, "Datos del socio modificados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se han podido actualizar los datos, revise la información");
+            JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del usuario, revise la informacion");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 
@@ -537,7 +536,7 @@ public class EditarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -549,7 +548,7 @@ public class EditarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -561,7 +560,7 @@ public class EditarSocio extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -629,10 +628,10 @@ public class EditarSocio extends javax.swing.JFrame {
         }
     }
     
-    private void RellenarCbxDomicilio() {
+    private void rellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA");
+            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -664,6 +663,40 @@ public class EditarSocio extends javax.swing.JFrame {
         }
         return id;
      }
+    
+    private void rellenarCbxEstatus() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
+            pst = con.prepareStatement("SELECT ESTATUS FROM ESTATUS ORDER BY ID_ESTATUS ASC");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                var es = rs.getString("ESTATUS");
+                estatusCbx.addItem(es);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private String id_estatus() {
+        String id = "";
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_ESTATUS FROM ESTATUS WHERE ID_ESTATUS=?";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, estatusCbx.getSelectedIndex() + 1);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getString("ID_ESTATUS");
+            }
+            return id;
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+        return id;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;

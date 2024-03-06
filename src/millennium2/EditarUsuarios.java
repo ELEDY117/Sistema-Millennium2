@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author edy11
+ * @author edy117
  */
 public class EditarUsuarios extends javax.swing.JFrame {
     DrawerController drawer;
@@ -33,6 +33,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
     public EditarUsuarios() {
         initComponents();
         rellenarCbxDomicilio();
+        rellenarCbxTipoUsuario();
         AdministrarUsuarios ventana = new AdministrarUsuarios();
         numeroIdentificacionTF.setText(ventana.id_Usuarios);
         nombreUsuarioTF.setText(ventana.nombreUsuario);
@@ -183,7 +184,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 20));
 
         numeroIdentificacionTF.setEditable(false);
-        numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
         numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numeroIdentificacionTFActionPerformed(evt);
@@ -228,7 +228,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         tipoDeUsuarioCbx.setBackground(new java.awt.Color(242, 242, 242));
-        tipoDeUsuarioCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adminstrador", "Recepcionista" }));
         tipoDeUsuarioCbx.setToolTipText("");
         tipoDeUsuarioCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tipoDeUsuarioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -399,7 +398,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         administradorJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         administradorJL.setForeground(new java.awt.Color(255, 255, 255));
         administradorJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        administradorJL.setText("Administrador");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -513,13 +511,14 @@ public class EditarUsuarios extends javax.swing.JFrame {
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
         String domicilio = id_domicilio();
+        String tipoUsuarioLocal = id_tipoUsuario();
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("UPDATE USUARIOS SET DOMICILIO_FK='" + domicilio + "', TIPO_USUARIO_FK='" + tipoDeUsuarioCbx.getSelectedIndex()+1 + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+            pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', DOMICILIO_FK='" + domicilio + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos Modificados");
+            JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se han podido actualizar los datos, revise la información");
+            JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del usuario, revise la informacion");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 
@@ -545,7 +544,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -557,7 +556,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -569,7 +568,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
                 evt.consume();
             }
         }
@@ -615,7 +614,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
     private void rellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA");
+            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -640,6 +639,40 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
             while (rs.next()) {
                 id = rs.getString("ID_DOMICILIO");
+            }
+            return id;
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+        return id;
+    }
+    
+    private void rellenarCbxTipoUsuario() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
+            pst = con.prepareStatement("SELECT TIPO_USUARIO FROM TIPO_USUARIOS ORDER BY ID_TIPOUSUARIO ASC");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                var tipoUsuario = rs.getString("TIPO_USUARIO");
+                tipoDeUsuarioCbx.addItem(tipoUsuario);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    private String id_tipoUsuario() {
+        String id = "";
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_TIPOUSUARIO FROM TIPO_USUARIOs WHERE ID_TIPOUSUARIO=?";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, tipoDeUsuarioCbx.getSelectedIndex() + 1);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getString("ID_TIPOUSUARIO");
             }
             return id;
         } catch (SQLException ex) {

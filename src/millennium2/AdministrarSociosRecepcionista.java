@@ -50,7 +50,7 @@ public class AdministrarSociosRecepcionista extends javax.swing.JFrame {
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild( new DrawerItem("Registrar Nuevo Socio").build())
+                .addChild( new DrawerItem("Ingresar Nuevo Socio").build())
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Pago de Mensualidad").build())
                 .separator(2, new Color(255, 255, 255))
@@ -118,7 +118,6 @@ public class AdministrarSociosRecepcionista extends javax.swing.JFrame {
         recepcionistaJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         recepcionistaJL.setForeground(new java.awt.Color(255, 255, 255));
         recepcionistaJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        recepcionistaJL.setText("Recepcionista");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);

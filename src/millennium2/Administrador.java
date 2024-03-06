@@ -116,7 +116,6 @@ public class Administrador extends javax.swing.JFrame {
         LoginLogo1 = new FondoPanel2();
         botonMenu = new javax.swing.JButton();
         administradorJL = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         millenniumLogo5 = new FondoPanel();
 
         jMenu1.setText("jMenu1");
@@ -194,9 +193,6 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setText("¡Hola Buen@s Dias/Tardes/Noches!");
-
         javax.swing.GroupLayout millenniumLogo5Layout = new javax.swing.GroupLayout(millenniumLogo5);
         millenniumLogo5.setLayout(millenniumLogo5Layout);
         millenniumLogo5Layout.setHorizontalGroup(
@@ -214,21 +210,15 @@ public class Administrador extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addGap(286, 286, 286)
+                .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(129, 129, 129)
                 .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(256, Short.MAX_VALUE))
         );
@@ -303,7 +293,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel administradorJL;
     private javax.swing.JButton botonMenu;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

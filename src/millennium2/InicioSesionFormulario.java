@@ -39,10 +39,18 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             pst = con.prepareStatement(sql);
             pst2 = con.prepareStatement(sql2);
             //Al ingresar los datos del usuario se traeran los datos escritos en los campos y se mandaran dentro de la variable de nuestra sentencia SQL.
-            pst.setString(1, usuarioTF.getText());
-            pst.setString(2, passwordPF.getText());
-            pst2.setString(1, usuarioTF.getText());
-            pst2.setString(2, passwordPF.getText());
+            if(usuarioTF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Ingrese el nombre de usuario");
+            }else{
+                pst.setString(1, usuarioTF.getText());
+                pst2.setString(1, usuarioTF.getText());
+            }
+            if(passwordPF.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "ingrese la contraseña");
+            }else{
+                pst.setString(2, passwordPF.getText());
+                pst2.setString(2, passwordPF.getText());
+            }
             //con este mandamos a ejecutar el query sql dentro de nuestra base de datos
             rs = pst.executeQuery();
             rs2 = pst2.executeQuery();
@@ -67,12 +75,18 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             }
             //en caso contrario si no son correctos nos mostrará lo siguiente y se limpiaran los campos del login.
             else {
-                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
-                usuarioTF.setText("");
-                passwordPF.setText("");
+                if(usuarioTF.getText() == null){
+                JOptionPane.showMessageDialog(null, "Ingrese un usuario");
+                }else if(passwordPF.getText() == null){
+                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+                    usuarioTF.setText("");
+                    passwordPF.setText("");
+                }
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un error, vuelva a intertarlo");
+            JOptionPane.showMessageDialog(null, "Ocurrio un error, no pudo iniciarse la sesion");
         }
         return con;
     }

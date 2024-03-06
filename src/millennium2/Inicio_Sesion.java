@@ -29,7 +29,6 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         inicioDeSesionJL = new javax.swing.JLabel();
         milleniumJL = new javax.swing.JLabel();
         botonLogin = new javax.swing.JButton();
-        mensajeJL = new javax.swing.JLabel();
         millenniumLogo5 = new FondoPanel();
 
         jMenu1.setText("jMenu1");
@@ -98,9 +97,6 @@ public class Inicio_Sesion extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        mensajeJL.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        mensajeJL.setText("¡Hola Buen@s Dias/Tardes/Noches!");
-
         javax.swing.GroupLayout millenniumLogo5Layout = new javax.swing.GroupLayout(millenniumLogo5);
         millenniumLogo5.setLayout(millenniumLogo5Layout);
         millenniumLogo5Layout.setHorizontalGroup(
@@ -118,21 +114,15 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mensajeJL)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addGap(286, 286, 286)
+                .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(mensajeJL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(129, 129, 129)
                 .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(256, Short.MAX_VALUE))
         );
@@ -192,7 +182,6 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel mensajeJL;
     private javax.swing.JLabel milleniumJL;
     private javax.swing.JPanel millenniumLogo5;
     // End of variables declaration//GEN-END:variables
