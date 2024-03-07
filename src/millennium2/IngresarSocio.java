@@ -184,7 +184,7 @@ public class IngresarSocio extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeono");
+        telefonoJL.setText("Teléfono");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -464,7 +464,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             String sql1 = "INSERT INTO SOCIOS(ID_SOCIO, ID_ESTATUS_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, DOMICILIO_FK, INSCRIPCION) VALUES(?,?,?,?,?,?,?,?,?)";
             pst = con.prepareStatement(sql1);
             if(numeroIdentificacionTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Ecriba el numero de identificacion del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el numero de identificacion del socio");
             }else{
             pst.setString(1, numeroIdentificacionTF.getText());
             }
@@ -475,12 +475,12 @@ public class IngresarSocio extends javax.swing.JFrame {
             pst.setString(3, nombreTF.getText());
             }
             if(apellidoPaternoTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
             }else{
             pst.setString(4, apellidoPaternoTF.getText());
             }
             if(apellidoMaternoTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
             }else{
             pst.setString(5, apellidoMaternoTF.getText());
             }
@@ -502,12 +502,11 @@ public class IngresarSocio extends javax.swing.JFrame {
             }
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
-            
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1400) {
                 JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
             } else if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta igresar ya existe");
+                JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
             } else {
                 JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }

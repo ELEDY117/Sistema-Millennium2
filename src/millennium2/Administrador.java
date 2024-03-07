@@ -287,6 +287,8 @@ public class Administrador extends javax.swing.JFrame {
             super.paint(g);
         }
     }
+    
+    //botonMenu = new javax.swing.JButton();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo1;
