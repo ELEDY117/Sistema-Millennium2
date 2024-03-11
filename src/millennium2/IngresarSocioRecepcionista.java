@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -34,6 +36,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         RellenarCbxDomicilio();
+        inscripcionTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 
                 .header(new JLabel("    Menu"))
@@ -255,6 +258,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             }
         });
 
+        inscripcionTF.setEditable(false);
         inscripcionTF.setBackground(new java.awt.Color(242, 242, 242));
         inscripcionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,11 +507,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             pst.setString(7, contactoEmergenciaTF.getText());
             }
             pst.setString(8, domicilio);
-            if(inscripcionTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Escriba la fecha de inscripcion del socio");
-            }else{
-            pst.setString(9, inscripcionTF.getText());
-            }
+            pst.setString(9, fecha());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
             
@@ -687,6 +687,18 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         }
         return id;
      }
+    
+    private String fecha(){
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crear un formateador para el formato DD/MM/AAAA
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Formatear la fecha
+        String fechaFormateada = fechaActual.format(formateador);
+
+        return fechaFormateada;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;

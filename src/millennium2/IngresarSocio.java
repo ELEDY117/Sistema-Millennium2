@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
@@ -34,6 +36,7 @@ public class IngresarSocio extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         RellenarCbxDomicilio();
+        inscripcionTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))
@@ -253,6 +256,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             }
         });
 
+        inscripcionTF.setEditable(false);
         inscripcionTF.setBackground(new java.awt.Color(242, 242, 242));
         inscripcionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -495,11 +499,7 @@ public class IngresarSocio extends javax.swing.JFrame {
             pst.setString(7, contactoEmergenciaTF.getText());
             }
             pst.setString(8, domicilio);
-            if(inscripcionTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Escriba la fecha de inscripcion del socio");
-            }else{
-            pst.setString(9, inscripcionTF.getText());
-            }
+            pst.setString(9, fecha());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
         } catch (SQLException ex) {
@@ -662,6 +662,18 @@ public class IngresarSocio extends javax.swing.JFrame {
         }
         return id;
      }
+    
+    private String fecha(){
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crear un formateador para el formato DD/MM/AAAA
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Formatear la fecha
+        String fechaFormateada = fechaActual.format(formateador);
+
+        return fechaFormateada;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;

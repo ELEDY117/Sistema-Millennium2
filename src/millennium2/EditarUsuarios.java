@@ -518,7 +518,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del usuario, revise la informacion");
+            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la informacion");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 

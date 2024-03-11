@@ -72,19 +72,11 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
                         this.dispose();
                     }
                 }
-            }
-            //en caso contrario si no son correctos nos mostrará lo siguiente y se limpiaran los campos del login.
-            else {
-                if(usuarioTF.getText() == null){
-                JOptionPane.showMessageDialog(null, "Ingrese un usuario");
-                }else if(passwordPF.getText() == null){
-                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
-                }else{
+            } else{
                     JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
                     usuarioTF.setText("");
                     passwordPF.setText("");
                 }
-            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error, no pudo iniciarse la sesion");
         }
