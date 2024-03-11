@@ -73,13 +73,13 @@ public class RegistrarVisitas extends javax.swing.JFrame {
         numeroVisitanteTF = new javax.swing.JTextField();
         nombreVisitanteTF = new javax.swing.JTextField();
         telefonoTF = new javax.swing.JTextField();
-        direccionTF = new javax.swing.JTextField();
         contactoEmergenciaJL = new javax.swing.JLabel();
         contactoEmergenciaTF = new javax.swing.JTextField();
         apellidoPaternoJL = new javax.swing.JLabel();
         apellidoPaternoTF = new javax.swing.JTextField();
         apellidoMaternoJL = new javax.swing.JLabel();
         apellidoMaternoTF = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +91,6 @@ public class RegistrarVisitas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Administrador");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -160,7 +159,10 @@ public class RegistrarVisitas extends javax.swing.JFrame {
         botonIngresar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
+        botonIngresar.setBorder(null);
+        botonIngresar.setBorderPainted(false);
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(75, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -171,7 +173,10 @@ public class RegistrarVisitas extends javax.swing.JFrame {
         botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonEditar.setForeground(new java.awt.Color(255, 255, 255));
         botonEditar.setText("Editar");
+        botonEditar.setBorder(null);
+        botonEditar.setBorderPainted(false);
         botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditar.setPreferredSize(new java.awt.Dimension(75, 30));
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -210,8 +215,6 @@ public class RegistrarVisitas extends javax.swing.JFrame {
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
 
-        direccionTF.setBackground(new java.awt.Color(242, 242, 242));
-
         contactoEmergenciaJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         contactoEmergenciaJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contactoEmergenciaJL.setText("Contacto de Emergencia");
@@ -233,6 +236,9 @@ public class RegistrarVisitas extends javax.swing.JFrame {
         apellidoMaternoJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         apellidoMaternoTF.setBackground(new java.awt.Color(242, 242, 242));
+
+        jComboBox1.setBackground(new java.awt.Color(242, 242, 242));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -257,20 +263,20 @@ public class RegistrarVisitas extends javax.swing.JFrame {
                                 .addComponent(direccionJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(telefonoTF, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(direccionTF)
-                            .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nombreVisitanteTF)
-                            .addComponent(numeroVisitanteTF)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
+                            .addComponent(telefonoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreVisitanteTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(numeroVisitanteTF, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(contactoEmergenciaTF)))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(botonIngresar)
+                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botonEditar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,16 +306,16 @@ public class RegistrarVisitas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonIngresar)
-                    .addComponent(botonEditar))
-                .addContainerGap(180, Short.MAX_VALUE))
+                    .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -394,7 +400,7 @@ public class RegistrarVisitas extends javax.swing.JFrame {
     private javax.swing.JLabel contactoEmergenciaJL;
     private javax.swing.JTextField contactoEmergenciaTF;
     private javax.swing.JLabel direccionJL;
-    private javax.swing.JTextField direccionTF;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -40,7 +40,7 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             pst2 = con.prepareStatement(sql2);
             //Al ingresar los datos del usuario se traeran los datos escritos en los campos y se mandaran dentro de la variable de nuestra sentencia SQL.
             if(usuarioTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Ingrese el nombre de usuario");
+                JOptionPane.showMessageDialog(null, "Ingrese el nombre del usuario");
             }else{
                 pst.setString(1, usuarioTF.getText());
                 pst2.setString(1, usuarioTF.getText());

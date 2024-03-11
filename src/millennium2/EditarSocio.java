@@ -280,6 +280,7 @@ public class EditarSocio extends javax.swing.JFrame {
             }
         });
 
+        inscripcionTF.setEditable(false);
         inscripcionTF.setBackground(new java.awt.Color(242, 242, 242));
         inscripcionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
