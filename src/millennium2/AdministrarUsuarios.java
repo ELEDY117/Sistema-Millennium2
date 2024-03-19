@@ -367,7 +367,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
     public void rellenarUsuarios() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_USUARIOS, CONTRASENA, NOMBREUSUARIO , TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO FROM USUARIOS WHERE ID_USUARIOS='" + id_Usuarios + "'";
+            String sql = "SELECT ID_USUARIOS, CONTRASENA, NOMBREUSUARIO , TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, DIRECCION FROM USUARIOS WHERE ID_USUARIOS='" + id_Usuarios + "'";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             
@@ -378,10 +378,10 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 paterno = rs.getString("APELLIDO_P");
                 materno = rs.getString("APELLIDO_M");
                 telefono = rs.getString("TELEFONO");
-                
+                domicilio = rs.getString("DIRECCION");
             }
             
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
+            /*con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, USUARIOS, COLONIA WHERE USUARIOS.DOMICILIO_FK = DOMICILIO.ID_DOMICILIO AND DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA AND ID_USUARIOS='" + id_Usuarios + "'");
             rs = pst.executeQuery();
 
@@ -390,7 +390,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 var ID_NUMERO = rs.getString("NUMERO");
                 var ID_COLONIA = rs.getString("COLONIA");
                 domicilio = (ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }
+            }*/
             
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT TIPO_USUARIO FROM TIPO_USUARIOS, USUARIOS WHERE USUARIOS.TIPO_USUARIO_FK = TIPO_USUARIOS.ID_TIPOUSUARIO AND ID_USUARIOS='" + id_Usuarios + "' ORDER BY ID_TIPOUSUARIO ASC");

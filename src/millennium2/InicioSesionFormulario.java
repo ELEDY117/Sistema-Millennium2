@@ -46,14 +46,18 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
                 pst2.setString(1, usuarioTF.getText());
             }
             if(passwordPF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "ingrese la contraseña");
+                JOptionPane.showMessageDialog(null, "Ingrese la contraseña");
             }else{
                 pst.setString(2, passwordPF.getText());
                 pst2.setString(2, passwordPF.getText());
             }
             //con este mandamos a ejecutar el query sql dentro de nuestra base de datos
+            if (validar() == 1) {
             rs = pst.executeQuery();
             rs2 = pst2.executeQuery();
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario inexistente, verifique el nombre del usuario");
+            }
             //Si los datos ingresados son correctos nos mostrará el siguiente mensaje
             if (rs.next()) {
                 while(rs2.next()){
@@ -298,6 +302,23 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             setOpaque(false);
             super.paint(g);
         }
+    }
+    
+    public int validar() {
+        int bandera = 1;
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT NOMBREUSUARIO FROM USUARIOS WHERE NOMBREUSUARIO=?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, usuarioTF.getText());
+            rs = pst.executeQuery();
+            if (rs.next() == false) {
+                bandera = 0;
+            }
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+        return bandera;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

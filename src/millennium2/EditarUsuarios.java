@@ -23,16 +23,17 @@ import javax.swing.JPanel;
  * @author edy117
  */
 public class EditarUsuarios extends javax.swing.JFrame {
+
     DrawerController drawer;
     EditarUsuarios ediUs = this;
     private String dato = "";
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    
+
     public EditarUsuarios() {
         initComponents();
-        rellenarCbxDomicilio();
+        //rellenarCbxDomicilio();
         rellenarCbxTipoUsuario();
         AdministrarUsuarios ventana = new AdministrarUsuarios();
         numeroIdentificacionTF.setText(ventana.id_Usuarios);
@@ -42,7 +43,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
         apellidoPaternoTF.setText(ventana.paterno);
         apellidoMaternoTF.setText(ventana.materno);
         telefonoTF.setText(ventana.telefono);
-        direccionCbx.setSelectedItem(ventana.domicilio);
+        //calleTF.setText(ventana.domicilio);
         tipoDeUsuarioCbx.setSelectedItem(ventana.tipoUsuario);
         this.setLocationRelativeTo(null);
         drawer = Drawer.newDrawer(this)
@@ -54,33 +55,33 @@ public class EditarUsuarios extends javax.swing.JFrame {
                 .addChild(new DrawerItem("Administrar Usuarios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
                                 AdministrarUsuarios mf2 = new AdministrarUsuarios();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 ediUs.dispose();
-                            break;
+                                break;
                             case 1:
                                 Administrador mf = new Administrador();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 ediUs.dispose();
-                            break;
-                            
+                                break;
+
                         }
                     }
-                 }).build();
+                }).build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         administradorJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,7 +111,9 @@ public class EditarUsuarios extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         nombreUsuarioTF = new javax.swing.JTextField();
         contrasenaTF = new javax.swing.JTextField();
-        direccionCbx = new javax.swing.JComboBox<>();
+        coloniaTF = new javax.swing.JTextField();
+        numeroTF = new javax.swing.JTextField();
+        calleTF = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         administradorJL = new javax.swing.JLabel();
         LoginLogo = new FondoPanel2();
@@ -277,16 +280,39 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
         contrasenaTF.setBackground(new java.awt.Color(242, 242, 242));
 
-        direccionCbx.setBackground(new java.awt.Color(242, 242, 242));
-        direccionCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
-        direccionCbx.setToolTipText("");
-        direccionCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        direccionCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        direccionCbx.setDoubleBuffered(true);
-        direccionCbx.setName(""); // NOI18N
-        direccionCbx.addActionListener(new java.awt.event.ActionListener() {
+        coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
+        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionCbxActionPerformed(evt);
+                coloniaTFActionPerformed(evt);
+            }
+        });
+        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFKeyTyped(evt);
+            }
+        });
+
+        numeroTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroTFActionPerformed(evt);
+            }
+        });
+        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFKeyTyped(evt);
+            }
+        });
+
+        calleTF.setBackground(new java.awt.Color(242, 242, 242));
+        calleTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calleTFActionPerformed(evt);
+            }
+        });
+        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFKeyTyped(evt);
             }
         });
 
@@ -296,53 +322,56 @@ public class EditarUsuarios extends javax.swing.JFrame {
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDeListaLayout.createSequentialGroup()
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombreUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(numeroIdentificacionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
+                            .addGap(85, 85, 85)
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nombreTF)
+                                .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelDeListaLayout.createSequentialGroup()
+                            .addGap(69, 69, 69)
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(panelDeListaLayout.createSequentialGroup()
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(73, 73, 73))
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(nombreTF)
-                                            .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDeListaLayout.createSequentialGroup()
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(telefonoTF)
-                                            .addComponent(tipoDeUsuarioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(direccionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(nombreUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelDeListaLayout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(numeroIdentificacionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelDeListaLayout.createSequentialGroup()
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(contrasenaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(telefonoTF)
+                                .addComponent(tipoDeUsuarioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(contrasenaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(93, Short.MAX_VALUE))
+                                .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,16 +409,18 @@ public class EditarUsuarios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(direccionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tipoDeUsuarioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(9, 17, 43));
@@ -458,10 +489,10 @@ public class EditarUsuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,9 +510,9 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
@@ -510,25 +541,28 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
-        String domicilio = id_domicilio();
+        //String domicilio = id_domicilio();
         String tipoUsuarioLocal = id_tipoUsuario();
         try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', DOMICILIO_FK='" + domicilio + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
+            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
+            } else {
+                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la informacion");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void direccionCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionCbxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionCbxActionPerformed
-
     private void numeroIdentificacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFKeyTyped
         // TODO add your handling code here:
-        if (numeroIdentificacionTF.getText().length() == 11) {
+        if (numeroIdentificacionTF.getText().length() == 4) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -540,7 +574,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void nombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFKeyTyped
         // TODO add your handling code here:
-        if (nombreTF.getText().length() == 30) {
+        if (nombreTF.getText().length() == 20) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -552,7 +586,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void apellidoPaternoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoPaternoTFKeyTyped
         // TODO add your handling code here:
-        if (apellidoPaternoTF.getText().length() == 30) {
+        if (apellidoPaternoTF.getText().length() == 20) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -564,7 +598,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void apellidoMaternoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoMaternoTFKeyTyped
         // TODO add your handling code here:
-        if (apellidoMaternoTF.getText().length() == 30) {
+        if (apellidoMaternoTF.getText().length() == 20) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -576,7 +610,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     private void telefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTFKeyTyped
         // TODO add your handling code here:
-        if (telefonoTF.getText().length() == 11) {
+        if (telefonoTF.getText().length() == 10) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -585,6 +619,30 @@ public class EditarUsuarios extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_telefonoTFKeyTyped
+
+    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_coloniaTFActionPerformed
+
+    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_coloniaTFKeyTyped
+
+    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroTFActionPerformed
+
+    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroTFKeyTyped
+
+    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calleTFActionPerformed
+
+    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calleTFKeyTyped
 
     /**
      * @param args the command line arguments
@@ -598,20 +656,21 @@ public class EditarUsuarios extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-    private void rellenarCbxDomicilio() {
+
+    /*private void rellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
@@ -645,8 +704,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             System.out.print(ex);
         }
         return id;
-    }
-    
+    }*/
     private void rellenarCbxTipoUsuario() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
@@ -691,8 +749,9 @@ public class EditarUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonMenu;
+    private javax.swing.JTextField calleTF;
+    private javax.swing.JTextField coloniaTF;
     private javax.swing.JTextField contrasenaTF;
-    private javax.swing.JComboBox<String> direccionCbx;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -710,6 +769,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField nombreTF;
     private javax.swing.JTextField nombreUsuarioTF;
     private javax.swing.JTextField numeroIdentificacionTF;
+    private javax.swing.JTextField numeroTF;
     private javax.swing.JPanel panelDeLista;
     private javax.swing.JTextField telefonoTF;
     private javax.swing.JComboBox<String> tipoDeUsuarioCbx;

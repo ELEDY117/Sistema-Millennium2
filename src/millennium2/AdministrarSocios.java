@@ -365,7 +365,7 @@ public class AdministrarSocios extends javax.swing.JFrame {
     public void rellenarSocios() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_SOCIO, ESTATUS, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, TO_CHAR(INSCRIPCION, 'DD/MM/YYYY') FROM SOCIOS, ESTATUS WHERE SOCIOS.ID_ESTATUS_FK = ESTATUS.ID_ESTATUS AND ID_SOCIO='" + id_Socios + "'ORDER BY ID_SOCIO ASC";
+            String sql = "SELECT ID_SOCIO, ESTATUS, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, TO_CHAR(INSCRIPCION, 'DD/MM/YYYY'), DIRECCION FROM SOCIOS, ESTATUS WHERE SOCIOS.ID_ESTATUS_FK = ESTATUS.ID_ESTATUS AND ID_SOCIO='" + id_Socios + "'ORDER BY ID_SOCIO ASC";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
             
@@ -377,9 +377,10 @@ public class AdministrarSocios extends javax.swing.JFrame {
                 telefono = rs.getString("TELEFONO");
                 contactoEmergencia = rs.getString("NUM_EMERGENCIA");
                 inscripcion= rs.getString(8).substring(0, 10);
+                domicilio = rs.getString("DIRECCION");
             }
             
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
+            /*con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, SOCIOS, COLONIA WHERE SOCIOS.DOMICILIO_FK = DOMICILIO.ID_DOMICILIO AND DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA AND ID_SOCIO='" + id_Socios + "'");
             rs = pst.executeQuery();
 
@@ -388,7 +389,7 @@ public class AdministrarSocios extends javax.swing.JFrame {
                 var ID_NUMERO = rs.getString("NUMERO");
                 var ID_COLONIA = rs.getString("COLONIA");
                 domicilio = (ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }
+            }*/
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
 

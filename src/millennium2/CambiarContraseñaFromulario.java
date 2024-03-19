@@ -21,13 +21,13 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     public CambiarContraseñaFromulario() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
-    public static String usuario="";
+
+    public static String usuario = "";
 
     public Connection conexion() {
         try {   //Creamos e iniciamos nuestra conexión hacia nuestra base de datos llamada MILLENNIUM2
@@ -61,7 +61,7 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
         }
         return con;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -245,33 +245,38 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cambiarContraseñaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaBtnActionPerformed
-        
+        validar();
+        System.out.println(validar());
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             // pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + passwordTF.getText() + "' WHERE ID_USUARIOS='" + numeroUsuarioTF.getText() + "'");
             String sql = "UPDATE USUARIOS SET CONTRASENA=? WHERE ID_USUARIOS=?";
             pst = con.prepareStatement(sql);
-            if(passwordTF.getText().equals("")){
+            if (passwordTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Ingrese la nueva contraseña");
-            }else{
-            pst.setString(1, passwordTF.getText());
+            } else {
+                pst.setString(1, passwordTF.getText());
             }
-            if(confirmarContraseñaTF.getText().equals("")){
+            if (confirmarContraseñaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Confirme la nueva contraseña");
             }
-            if(numeroUsuarioTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Ingrese el numero de identificacion del usuario");
-            }else{
-            pst.setString(2, numeroUsuarioTF.getText());
+            if (numeroUsuarioTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese el número de identificación del usuario");
+            } else {
+                pst.setString(2, numeroUsuarioTF.getText());
             }
-            if(passwordTF.getText().equals(confirmarContraseñaTF.getText())){
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Contraseña del usuario modificada");
-            }else{
-                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            if (validar() == 1) {
+                if (passwordTF.getText().equals(confirmarContraseñaTF.getText())) {
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Contraseña del usuario modificada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario inexistente, verifique el número del usuario");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la informacion");
+            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la información");
         }
     }//GEN-LAST:event_cambiarContraseñaBtnActionPerformed
 
@@ -290,9 +295,6 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_iniciarSesionBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
@@ -302,17 +304,35 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanelLogin extends JPanel{
+
+    class FondoPanelLogin extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
+    }
+
+    public int validar() {
+        int bandera = 1;
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_USUARIOS FROM USUARIOS WHERE ID_USUARIOS=?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, numeroUsuarioTF.getText());
+            rs = pst.executeQuery();
+            if (rs.next() == false) {
+                bandera = 0;
+            }
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+        return bandera;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

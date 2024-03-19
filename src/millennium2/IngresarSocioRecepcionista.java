@@ -25,20 +25,20 @@ import java.time.format.DateTimeFormatter;
  * @author edy11
  */
 public class IngresarSocioRecepcionista extends javax.swing.JFrame {
+
     private DrawerController drawer;
     IngresarSocioRecepcionista reNuSoRe = this;
     private String dato = "";
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     public IngresarSocioRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
-        RellenarCbxDomicilio();
+        //RellenarCbxDomicilio();
         inscripcionTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
-                
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))
                 .background(new Color(255, 255, 255))
@@ -47,32 +47,32 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
-                                AdministrarSociosRecepcionista  mf2 = new AdministrarSociosRecepcionista();
+                                AdministrarSociosRecepcionista mf2 = new AdministrarSociosRecepcionista();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 reNuSoRe.dispose();
-                            break;
+                                break;
                             case 1:
                                 Recepcionista mf = new Recepcionista();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 reNuSoRe.dispose();
-                            break;
+                                break;
                         }
                     }
-                 }).build();
+                }).build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         recepcionistaJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,7 +103,9 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         contactoEmergenciaJL1 = new javax.swing.JLabel();
         estatusCbx = new javax.swing.JComboBox<>();
         botonIngresar = new javax.swing.JButton();
-        direccionCbx = new javax.swing.JComboBox<>();
+        calleTF = new javax.swing.JTextField();
+        numeroTF = new javax.swing.JTextField();
+        coloniaTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -259,7 +261,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         });
 
         inscripcionTF.setEditable(false);
-        inscripcionTF.setBackground(new java.awt.Color(242, 242, 242));
         inscripcionTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inscripcionTFActionPerformed(evt);
@@ -310,16 +311,39 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        direccionCbx.setBackground(new java.awt.Color(242, 242, 242));
-        direccionCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
-        direccionCbx.setToolTipText("");
-        direccionCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        direccionCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        direccionCbx.setDoubleBuffered(true);
-        direccionCbx.setName(""); // NOI18N
-        direccionCbx.addActionListener(new java.awt.event.ActionListener() {
+        calleTF.setBackground(new java.awt.Color(242, 242, 242));
+        calleTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionCbxActionPerformed(evt);
+                calleTFActionPerformed(evt);
+            }
+        });
+        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFKeyTyped(evt);
+            }
+        });
+
+        numeroTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroTFActionPerformed(evt);
+            }
+        });
+        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFKeyTyped(evt);
+            }
+        });
+
+        coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
+        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                coloniaTFActionPerformed(evt);
+            }
+        });
+        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFKeyTyped(evt);
             }
         });
 
@@ -327,57 +351,60 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         panelDeLista.setLayout(panelDeListaLayout);
         panelDeListaLayout.setHorizontalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(direccionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(direccionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
             .addGroup(panelDeListaLayout.createSequentialGroup()
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addComponent(inscripcionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inscripcionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(numeroIdentificacionTF)
-                                            .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoPaternoTF)
-                                            .addComponent(apellidoMaternoTF)
-                                            .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(57, 57, 57)
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(apellidoMaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(apellidoPaternoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(direccionJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(apellidoPaternoTF)
+                                        .addComponent(apellidoMaternoTF)
+                                        .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                                        .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelDeListaLayout.createSequentialGroup()
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(numeroIdentificacionTF)
+                                        .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addComponent(inscripcionJL, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(inscripcionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(261, 261, 261))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,11 +431,13 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telefonoJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccionCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inscripcionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inscripcionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -422,7 +451,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                     .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -432,7 +461,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(193, 193, 193)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -451,9 +480,9 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
@@ -468,49 +497,53 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:    
-         try {
-            String domicilio = id_domicilio();
-           
+        try {
+            //String domicilio = id_domicilio();
+
             //Si el Id no existe lo insertara en la base de datos 
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql1 = "INSERT INTO SOCIOS(ID_SOCIO, ID_ESTATUS_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, DOMICILIO_FK, INSCRIPCION) VALUES(?,?,?,?,?,?,?,?,?)";
+            String sql1 = "INSERT INTO SOCIOS(ID_SOCIO, ID_ESTATUS_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, DIRECCION, INSCRIPCION) VALUES(?,?,?,?,?,?,?,?,?)";
             pst = con.prepareStatement(sql1);
-            if(numeroIdentificacionTF.getText().equals("")){
+            if (numeroIdentificacionTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero de identificacion del socio");
-            }else{
-            pst.setString(1, numeroIdentificacionTF.getText());
+            } else {
+                pst.setString(1, numeroIdentificacionTF.getText());
             }
-            pst.setInt(2, estatusCbx.getSelectedIndex()+1);
-            if(nombreTF.getText().equals("")){
+            pst.setInt(2, estatusCbx.getSelectedIndex() + 1);
+            if (nombreTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
-            }else{
-            pst.setString(3, nombreTF.getText());
+            } else {
+                pst.setString(3, nombreTF.getText());
             }
-            if(apellidoPaternoTF.getText().equals("")){
+            if (apellidoPaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
-            }else{
-            pst.setString(4, apellidoPaternoTF.getText());
+            } else {
+                pst.setString(4, apellidoPaternoTF.getText());
             }
-            if(apellidoMaternoTF.getText().equals("")){
+            if (apellidoMaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
-            }else{
-            pst.setString(5, apellidoMaternoTF.getText());
+            } else {
+                pst.setString(5, apellidoMaternoTF.getText());
             }
-            if(telefonoTF.getText().equals("")){
+            if (telefonoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
-            }else{
-            pst.setString(6, telefonoTF.getText());
+            } else {
+                pst.setString(6, telefonoTF.getText());
             }
-            if(contactoEmergenciaTF.getText().equals("")){
+            if (contactoEmergenciaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
-            }else{
-            pst.setString(7, contactoEmergenciaTF.getText());
+            } else {
+                pst.setString(7, contactoEmergenciaTF.getText());
             }
-            pst.setString(8, domicilio);
+            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
+            } else {
+                pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+            }
             pst.setString(9, fecha());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
-            
+
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1400) {
                 JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
@@ -522,13 +555,9 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
 
-    private void direccionCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionCbxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_direccionCbxActionPerformed
-
     private void telefonoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTFKeyTyped
         // TODO add your handling code here:
-        if (telefonoTF.getText().length() == 11) {
+        if (telefonoTF.getText().length() == 10) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -540,7 +569,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void contactoEmergenciaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactoEmergenciaTFKeyTyped
         // TODO add your handling code here:
-        if (contactoEmergenciaTF.getText().length() == 11) {
+        if (contactoEmergenciaTF.getText().length() == 10) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -569,7 +598,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void numeroIdentificacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFKeyTyped
         // TODO add your handling code here:
-        if (numeroIdentificacionTF.getText().length() == 11) {
+        if (numeroIdentificacionTF.getText().length() == 6) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -581,7 +610,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void nombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFKeyTyped
         // TODO add your handling code here:
-        if (nombreTF.getText().length() == 30) {
+        if (nombreTF.getText().length() == 50) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -593,7 +622,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void apellidoPaternoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoPaternoTFKeyTyped
         // TODO add your handling code here:
-         if (apellidoPaternoTF.getText().length() == 30) {
+        if (apellidoPaternoTF.getText().length() == 20) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -605,7 +634,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
     private void apellidoMaternoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoMaternoTFKeyTyped
         // TODO add your handling code here:
-         if (apellidoMaternoTF.getText().length() == 30) {
+        if (apellidoMaternoTF.getText().length() == 20) {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
@@ -614,6 +643,30 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_apellidoMaternoTFKeyTyped
+
+    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calleTFActionPerformed
+
+    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calleTFKeyTyped
+
+    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroTFActionPerformed
+
+    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroTFKeyTyped
+
+    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_coloniaTFActionPerformed
+
+    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_coloniaTFKeyTyped
 
     /**
      * @param args the command line arguments
@@ -627,32 +680,34 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel extends JPanel{
+
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/main-menu.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-    private void RellenarCbxDomicilio() {
+
+    /*private void RellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
@@ -662,7 +717,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 var ID_DOMICILIO = rs.getString("CALLE");
                 var ID_NUMERO = rs.getString("NUMERO");
                 var ID_COLONIA = rs.getString("COLONIA");
-                direccionCbx.addItem(ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
+                calleTF.addItem(ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -675,7 +730,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "SELECT ID_DOMICILIO FROM DOMICILIO WHERE ID_DOMICILIO=?";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, direccionCbx.getSelectedIndex() + 1);
+            pst.setInt(1, calleTF.getSelectedIndex() + 1);
             rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -686,9 +741,8 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             System.out.print(ex);
         }
         return id;
-     }
-    
-    private String fecha(){
+     }*/
+    private String fecha() {
         LocalDate fechaActual = LocalDate.now();
 
         // Crear un formateador para el formato DD/MM/AAAA
@@ -699,7 +753,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
         return fechaFormateada;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel apellidoMaternoJL;
@@ -708,10 +762,11 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
     private javax.swing.JTextField apellidoPaternoTF;
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonMenu;
+    private javax.swing.JTextField calleTF;
+    private javax.swing.JTextField coloniaTF;
     private javax.swing.JLabel contactoEmergenciaJL;
     private javax.swing.JLabel contactoEmergenciaJL1;
     private javax.swing.JTextField contactoEmergenciaTF;
-    private javax.swing.JComboBox<String> direccionCbx;
     private javax.swing.JLabel direccionJL;
     private javax.swing.JComboBox<String> estatusCbx;
     private javax.swing.JLabel inscripcionJL;
@@ -724,6 +779,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
     private javax.swing.JTextField nombreTF;
     private javax.swing.JLabel numeroIdentificacionJL;
     private javax.swing.JTextField numeroIdentificacionTF;
+    private javax.swing.JTextField numeroTF;
     private javax.swing.JPanel panelDeLista;
     private javax.swing.JLabel recepcionistaJL;
     private javax.swing.JLabel telefonoJL;
