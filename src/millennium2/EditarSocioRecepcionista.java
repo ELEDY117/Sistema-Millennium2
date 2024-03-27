@@ -23,13 +23,14 @@ import javax.swing.JPanel;
  * @author edy11
  */
 public class EditarSocioRecepcionista extends javax.swing.JFrame {
+
     DrawerController drawer;
     EditarSocioRecepcionista ediSosRep = this;
-     private String dato = "";
-     Connection con = null;
-     PreparedStatement pst = null;
-     ResultSet rs = null;
-    
+    private String dato = "";
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
     public EditarSocioRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -54,33 +55,33 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
                 .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
                                 AdministrarSociosRecepcionista mf2 = new AdministrarSociosRecepcionista();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 ediSosRep.dispose();
-                            break;
+                                break;
                             case 1:
                                 Administrador mf1 = new Administrador();
                                 mf1.setUsuario(dato);
                                 mf1.setVisible(true);
                                 ediSosRep.dispose();
-                            break;
+                                break;
                         }
                     }
-                 })
+                })
                 .build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         recepcionistaJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -222,16 +223,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         direccionJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setEditable(false);
-        numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroIdentificacionTFActionPerformed(evt);
-            }
-        });
-        numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numeroIdentificacionTFKeyTyped(evt);
-            }
-        });
 
         nombreTF.setBackground(new java.awt.Color(242, 242, 242));
         nombreTF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -241,11 +232,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         });
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
-        telefonoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefonoTFActionPerformed(evt);
-            }
-        });
         telefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoTFKeyTyped(evt);
@@ -327,40 +313,10 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         estatusCbx.setPreferredSize(new java.awt.Dimension(70, 22));
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
-        calleTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calleTFActionPerformed(evt);
-            }
-        });
-        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                calleTFKeyTyped(evt);
-            }
-        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroTFActionPerformed(evt);
-            }
-        });
-        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numeroTFKeyTyped(evt);
-            }
-        });
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
-        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coloniaTFActionPerformed(evt);
-            }
-        });
-        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                coloniaTFKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -501,26 +457,87 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
-        //String domicilio = id_domicilio();
         String estatusLocal = id_estatus();
         try {
-            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+            if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+                //pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+                pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK= ? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO= ?");
+                pst.setString(1, estatusLocal);
+                if (nombreTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
+                } else {
+                    pst.setString(2, nombreTF.getText());
+                }
+                if (apellidoPaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+                } else {
+                    pst.setString(3, apellidoPaternoTF.getText());
+                }
+                if (apellidoMaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+                } else {
+                    pst.setString(4, apellidoMaternoTF.getText());
+                }
+                if (telefonoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
+                } else {
+                    pst.setString(5, telefonoTF.getText());
+                }
+                if (contactoEmergenciaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
+                } else {
+                    pst.setString(6, contactoEmergenciaTF.getText());
+                }
+                pst.setString(7, inscripcionTF.getText());
+                pst.setString(8, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del socio modificados");
             } else {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+                //pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+                pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION=?, ID_ESTATUS_FK=? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO=? ");
+                if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
+                } else {
+                    pst.setString(1, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+                }
+                pst.setString(2, estatusLocal);
+                if (nombreTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
+                } else {
+                    pst.setString(3, nombreTF.getText());
+                }
+                if (apellidoPaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+                } else {
+                    pst.setString(4, apellidoPaternoTF.getText());
+                }
+                if (apellidoMaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+                } else {
+                    pst.setString(5, apellidoMaternoTF.getText());
+                }
+                if (telefonoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
+                } else {
+                    pst.setString(6, telefonoTF.getText());
+                }
+                if (contactoEmergenciaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
+                } else {
+                    pst.setString(7, contactoEmergenciaTF.getText());
+                }
+                pst.setString(8, inscripcionTF.getText());
+                pst.setString(9, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del socio modificados");
             }
@@ -528,14 +545,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del usuario, revise la informacion");
         }
     }//GEN-LAST:event_botonEditarActionPerformed
-
-    private void numeroIdentificacionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroIdentificacionTFActionPerformed
-
-    private void telefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoTFActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
@@ -546,6 +555,12 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             pst.setString(1, numeroIdentificacionTF.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            numeroIdentificacionTF.setText("");
+            nombreTF.setText("");
+            apellidoPaternoTF.setText("");
+            apellidoMaternoTF.setText("");
+            telefonoTF.setText("");
+            contactoEmergenciaTF.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede eliminar el socio, revise la infromación");
         }
@@ -562,18 +577,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_apellidoPaternoTFKeyTyped
-
-    private void numeroIdentificacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFKeyTyped
-        // TODO add your handling code here:
-        if (numeroIdentificacionTF.getText().length() == 6) {
-            evt.consume();
-        } else {
-            char c = evt.getKeyChar();
-            if (c < '0' || c > '9') {
-                evt.consume();
-            }
-        }
-    }//GEN-LAST:event_numeroIdentificacionTFKeyTyped
 
     private void nombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFKeyTyped
         // TODO add your handling code here:
@@ -636,30 +639,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_contactoEmergenciaTFKeyTyped
 
-    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFActionPerformed
-
-    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFKeyTyped
-
-    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFActionPerformed
-
-    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFKeyTyped
-
-    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFActionPerformed
-
-    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFKeyTyped
-
     /**
      * @param args the command line arguments
      */
@@ -672,20 +651,21 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-      /*private void rellenarCbxDomicilio() {
+
+    /*private void rellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
@@ -720,7 +700,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         }
         return id;
      }*/
-    
     private void rellenarCbxEstatus() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");

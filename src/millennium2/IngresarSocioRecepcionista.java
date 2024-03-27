@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author edy11
+ * @author eledy117
  */
 public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
@@ -200,11 +200,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         direccionJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroIdentificacionTFActionPerformed(evt);
-            }
-        });
         numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 numeroIdentificacionTFKeyTyped(evt);
@@ -219,11 +214,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         });
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
-        telefonoTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefonoTFActionPerformed(evt);
-            }
-        });
         telefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoTFKeyTyped(evt);
@@ -261,11 +251,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         });
 
         inscripcionTF.setEditable(false);
-        inscripcionTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inscripcionTFActionPerformed(evt);
-            }
-        });
         inscripcionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inscripcionTFKeyTyped(evt);
@@ -312,40 +297,10 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         });
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
-        calleTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calleTFActionPerformed(evt);
-            }
-        });
-        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                calleTFKeyTyped(evt);
-            }
-        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroTFActionPerformed(evt);
-            }
-        });
-        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numeroTFKeyTyped(evt);
-            }
-        });
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
-        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coloniaTFActionPerformed(evt);
-            }
-        });
-        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                coloniaTFKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -487,14 +442,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
-    private void numeroIdentificacionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroIdentificacionTFActionPerformed
-
-    private void telefonoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoTFActionPerformed
-
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:    
         try {
@@ -541,16 +488,17 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
             }
             pst.setString(9, fecha());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
-
-        } catch (SQLException ex) {
-            if (ex.getErrorCode() == 1400) {
-                JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-            } else if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
+           if (validarNombresApellidosSociosRecepcionista() == 0) {
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+                JOptionPane.showMessageDialog(null, "El socio con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
+            }
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+                case 1400 -> JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+                case 1 -> JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
+                default -> JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
@@ -578,10 +526,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_contactoEmergenciaTFKeyTyped
-
-    private void inscripcionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscripcionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inscripcionTFActionPerformed
 
     private void inscripcionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inscripcionTFKeyTyped
         // TODO add your handling code here:
@@ -644,30 +588,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_apellidoMaternoTFKeyTyped
 
-    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFActionPerformed
-
-    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFKeyTyped
-
-    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFActionPerformed
-
-    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFKeyTyped
-
-    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFActionPerformed
-
-    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFKeyTyped
-
     /**
      * @param args the command line arguments
      */
@@ -679,19 +599,6 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 new IngresarSocioRecepcionista().setVisible(true);
             }
         });
-    }
-
-    class FondoPanel extends JPanel {
-
-        private Image imagen;
-
-        @Override
-        public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/imagenes/main-menu.png")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            setOpaque(false);
-            super.paint(g);
-        }
     }
 
     class FondoPanel2 extends JPanel {
@@ -753,7 +660,38 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
         return fechaFormateada;
     }
+    
+    public int validarNombresApellidosSociosRecepcionista() {
+        int bandera = 1;
 
+        try {
+            Connection conVNASR = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sqlVNASR = "SELECT NOMBRE, APELLIDO_P, APELLIDO_M FROM SOCIOS WHERE NOMBRE=? AND APELLIDO_P=? AND APELLIDO_M=?";
+            PreparedStatement pstVNASR = conVNASR.prepareStatement(sqlVNASR);
+            pstVNASR.setString(1, nombreTF.getText());
+            pstVNASR.setString(2, apellidoPaternoTF.getText());
+            pstVNASR.setString(3, apellidoMaternoTF.getText());
+            ResultSet rsVNASR = pstVNASR.executeQuery();
+
+            /*while (rs.next()) {
+                var nombreLocal = rs.getString("NOMBRE");
+                var apellido_pLocal = rs.getString("APELLIDO_P");
+                var apellido_mLocal = rs.getString("APELLIDO_M");
+                if (nombreTF.getText().equals(nombreLocal) || apellidoPaternoTF.getText().equals(apellido_pLocal) || apellidoMaternoTF.getText().equals(apellido_mLocal)) {
+                    bandera = 0;
+                }
+            }*/
+            if (rsVNASR.next() == false) {
+                bandera = 0;
+            }
+
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+
+        return bandera;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel apellidoMaternoJL;

@@ -372,7 +372,6 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroIdentificacionTFActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroIdentificacionTFKeyTyped"/>
               </Events>
             </Component>
@@ -393,7 +392,6 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="telefonoTFActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telefonoTFKeyTyped"/>
               </Events>
             </Component>
@@ -459,7 +457,6 @@
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inscripcionTFActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inscripcionTFKeyTyped"/>
               </Events>
             </Component>
@@ -558,10 +555,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calleTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calleTFKeyTyped"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="numeroTF">
               <Properties>
@@ -569,10 +562,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroTFKeyTyped"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="coloniaTF">
               <Properties>
@@ -580,10 +569,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="coloniaTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="coloniaTFKeyTyped"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

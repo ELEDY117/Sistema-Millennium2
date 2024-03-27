@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author edy117
+ * @author eledy117
  */
 public class EditarUsuarios extends javax.swing.JFrame {
 
@@ -187,11 +187,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(170, 20));
 
         numeroIdentificacionTF.setEditable(false);
-        numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroIdentificacionTFActionPerformed(evt);
-            }
-        });
         numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 numeroIdentificacionTFKeyTyped(evt);
@@ -236,11 +231,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         tipoDeUsuarioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tipoDeUsuarioCbx.setDoubleBuffered(true);
         tipoDeUsuarioCbx.setName(""); // NOI18N
-        tipoDeUsuarioCbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoDeUsuarioCbxActionPerformed(evt);
-            }
-        });
 
         apellidoPaternoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         apellidoPaternoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -281,40 +271,10 @@ public class EditarUsuarios extends javax.swing.JFrame {
         contrasenaTF.setBackground(new java.awt.Color(242, 242, 242));
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
-        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coloniaTFActionPerformed(evt);
-            }
-        });
-        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                coloniaTFKeyTyped(evt);
-            }
-        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroTFActionPerformed(evt);
-            }
-        });
-        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numeroTFKeyTyped(evt);
-            }
-        });
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
-        calleTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calleTFActionPerformed(evt);
-            }
-        });
-        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                calleTFKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -517,16 +477,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
-    private void tipoDeUsuarioCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoDeUsuarioCbxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoDeUsuarioCbxActionPerformed
-
-    private void numeroIdentificacionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroIdentificacionTFActionPerformed
-
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        // TODO add your handling code here:
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "DELETE FROM USUARIOS WHERE ID_USUARIOS=?";
@@ -534,24 +485,100 @@ public class EditarUsuarios extends javax.swing.JFrame {
             pst.setString(1, numeroIdentificacionTF.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            numeroIdentificacionTF.setText("");
+            nombreUsuarioTF.setText("");
+            contrasenaTF.setText("");
+            nombreTF.setText("");
+            apellidoPaternoTF.setText("");
+            apellidoMaternoTF.setText("");
+            telefonoTF.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede eliminar el usuario, revise la infromación");
         }
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
         //String domicilio = id_domicilio();
         String tipoUsuarioLocal = id_tipoUsuario();
         try {
-            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+            if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+                //pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=? , NOMBREUSUARIO= ?, TIPO_USUARIO_FK= ?, NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO=? WHERE ID_USUARIOS= ?");
+                if (contrasenaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
+                } else {
+                    pst.setString(1, contrasenaTF.getText());
+                }
+                if (nombreUsuarioTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
+                } else {
+                    pst.setString(2, nombreUsuarioTF.getText());
+                }
+                pst.setString(3, tipoUsuarioLocal);
+                if (nombreTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
+                } else {
+                    pst.setString(4, nombreTF.getText());
+                }
+                if (apellidoPaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
+                } else {
+                    pst.setString(5, apellidoPaternoTF.getText());
+                }
+                if (apellidoMaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
+                } else {
+                    pst.setString(6, apellidoMaternoTF.getText());
+                }
+                if (telefonoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
+                } else {
+                    pst.setString(7, telefonoTF.getText());
+                }
+                pst.setString(8, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
             } else {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoPaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
+                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=?, NOMBREUSUARIO=?, TIPO_USUARIO_FK=?, NOMBRE=?, APELLIDO_P=?, APELLIDO_M=?, TELEFONO=?, DIRECCION=? WHERE ID_USUARIOS=?");
+                if (contrasenaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
+                } else {
+                    pst.setString(1, contrasenaTF.getText());
+                }
+                if (nombreUsuarioTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
+                } else {
+                    pst.setString(2, nombreUsuarioTF.getText());
+                }
+                pst.setString(3, tipoUsuarioLocal);
+                if (nombreTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
+                } else {
+                    pst.setString(4, nombreTF.getText());
+                }
+                if (apellidoPaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
+                } else {
+                    pst.setString(5, apellidoPaternoTF.getText());
+                }
+                if (apellidoMaternoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
+                } else {
+                    pst.setString(6, apellidoMaternoTF.getText());
+                }
+                if (telefonoTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
+                } else {
+                    pst.setString(7, telefonoTF.getText());
+                }
+                if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
+                } else {
+                    pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+                }
+                pst.setString(9, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
             }
@@ -620,33 +647,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_telefonoTFKeyTyped
 
-    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFActionPerformed
-
-    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFKeyTyped
-
-    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFActionPerformed
-
-    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFKeyTyped
-
-    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFActionPerformed
-
-    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFKeyTyped
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();

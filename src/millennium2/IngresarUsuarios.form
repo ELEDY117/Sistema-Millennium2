@@ -217,10 +217,8 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="contrasenaTF" max="32767" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="numeroIdentificacionTF" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="nombreUsuarioTF" min="-2" pref="150" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="numeroIdentificacionTF" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="nombreUsuarioTF" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                                           <Component id="nombreTF" alignment="0" max="32767" attributes="0"/>
                                           <Component id="apellidoPaternoTF" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                                       </Group>
@@ -390,7 +388,6 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroIdentificacionTFActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroIdentificacionTFKeyTyped"/>
               </Events>
             </Component>
@@ -453,9 +450,6 @@
                 <Property name="doubleBuffered" type="boolean" value="true"/>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoDeUsuarioCbxActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -522,9 +516,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreUsuarioTFKeyTyped"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -551,10 +542,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calleTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calleTFKeyTyped"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="numeroTF">
               <Properties>
@@ -562,10 +549,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroTFKeyTyped"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="coloniaTF">
               <Properties>
@@ -573,10 +556,6 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="coloniaTFActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="coloniaTFKeyTyped"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

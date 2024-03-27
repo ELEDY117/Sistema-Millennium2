@@ -23,8 +23,7 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
     PreparedStatement pst2 = null;
     ResultSet rs = null;
     ResultSet rs2 = null;
-    
-    
+
     public InicioSesionFormulario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -39,36 +38,36 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             pst = con.prepareStatement(sql);
             pst2 = con.prepareStatement(sql2);
             //Al ingresar los datos del usuario se traeran los datos escritos en los campos y se mandaran dentro de la variable de nuestra sentencia SQL.
-            if(usuarioTF.getText().equals("")){
+            if (usuarioTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Ingrese el nombre del usuario");
-            }else{
+            } else {
                 pst.setString(1, usuarioTF.getText());
                 pst2.setString(1, usuarioTF.getText());
             }
-            if(passwordPF.getText().equals("")){
+            if (passwordPF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Ingrese la contraseña");
-            }else{
+            } else {
                 pst.setString(2, passwordPF.getText());
                 pst2.setString(2, passwordPF.getText());
             }
             //con este mandamos a ejecutar el query sql dentro de nuestra base de datos
-            if (validar() == 1) {
-            rs = pst.executeQuery();
-            rs2 = pst2.executeQuery();
-            }else{
+            if (validarIS() == 1) {
+                rs = pst.executeQuery();
+                rs2 = pst2.executeQuery();
+            } else {
                 JOptionPane.showMessageDialog(null, "Usuario inexistente, verifique el nombre del usuario");
             }
             //Si los datos ingresados son correctos nos mostrará el siguiente mensaje
             if (rs.next()) {
-                while(rs2.next()){
+                while (rs2.next()) {
                     var tipoUsuario = rs2.getString("ID_TIPOUSUARIO");
-                    if(tipoUsuario.equals("1")){ 
+                    if (tipoUsuario.equals("1")) {
                         JOptionPane.showMessageDialog(null, "Inicio de sesión correcto");
                         Administrador mf = new Administrador();
                         mf.setUsuario(usuarioTF.getText());
                         mf.setVisible(true);
                         this.dispose();
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Inicio de sesión correcto");
                         Recepcionista mf = new Recepcionista();
                         mf.setUsuario(usuarioTF.getText());
@@ -76,17 +75,17 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
                         this.dispose();
                     }
                 }
-            } else{
-                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
-                    usuarioTF.setText("");
-                    passwordPF.setText("");
-                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos");
+                usuarioTF.setText("");
+                passwordPF.setText("");
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error, no pudo iniciarse la sesion");
         }
         return con;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -291,28 +290,32 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanelLogin extends JPanel{
+
+    class FondoPanelLogin extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
-    public int validar() {
+
+    public int validarIS() {
         int bandera = 1;
+        Connection conV = null;
+        PreparedStatement pstV = null;
+        ResultSet rsV = null;
         try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT NOMBREUSUARIO FROM USUARIOS WHERE NOMBREUSUARIO=?";
-            pst = con.prepareStatement(sql);
-            pst.setString(1, usuarioTF.getText());
-            rs = pst.executeQuery();
-            if (rs.next() == false) {
+            conV = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sqlV = "SELECT NOMBREUSUARIO FROM USUARIOS WHERE NOMBREUSUARIO=?";
+            pstV = conV.prepareStatement(sqlV);
+            pstV.setString(1, usuarioTF.getText());
+            rsV = pstV.executeQuery();
+            if (rsV.next() == false) {
                 bandera = 0;
             }
         } catch (SQLException ex) {
@@ -320,7 +323,7 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
         }
         return bandera;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cambiarContraseñaBtn;
     private javax.swing.JButton iniciarSesiónBtn;

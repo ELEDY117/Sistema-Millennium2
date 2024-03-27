@@ -23,13 +23,14 @@ import javax.swing.JOptionPane;
  * @author edy11
  */
 public class IngresarUsuarios extends javax.swing.JFrame {
+
     DrawerController drawer;
     IngresarUsuarios ingUs = this;
     private String dato = "";
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    
+
     public IngresarUsuarios() {
         initComponents();
         //rellenarCbxDomicilio();
@@ -43,33 +44,33 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 .addChild(new DrawerItem("Administrar Usuarios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
                                 AdministrarUsuarios mf2 = new AdministrarUsuarios();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 ingUs.dispose();
-                            break;
+                                break;
                             case 1:
                                 Administrador mf = new Administrador();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 ingUs.dispose();
-                            break;
-                            
+                                break;
+
                         }
                     }
-                 }).build();
+                }).build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         administradorJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -210,11 +211,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroIdentificacionTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroIdentificacionTFActionPerformed(evt);
-            }
-        });
         numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 numeroIdentificacionTFKeyTyped(evt);
@@ -249,11 +245,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         tipoDeUsuarioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tipoDeUsuarioCbx.setDoubleBuffered(true);
         tipoDeUsuarioCbx.setName(""); // NOI18N
-        tipoDeUsuarioCbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoDeUsuarioCbxActionPerformed(evt);
-            }
-        });
 
         apellidoPaternoTF.setBackground(new java.awt.Color(242, 242, 242));
         apellidoPaternoTF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -285,11 +276,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         jLabel9.setPreferredSize(new java.awt.Dimension(60, 20));
 
         nombreUsuarioTF.setBackground(new java.awt.Color(242, 242, 242));
-        nombreUsuarioTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreUsuarioTFKeyTyped(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -299,40 +285,10 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         contrasenaTF.setBackground(new java.awt.Color(242, 242, 242));
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
-        calleTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calleTFActionPerformed(evt);
-            }
-        });
-        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                calleTFKeyTyped(evt);
-            }
-        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
-        numeroTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroTFActionPerformed(evt);
-            }
-        });
-        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                numeroTFKeyTyped(evt);
-            }
-        });
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
-        coloniaTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coloniaTFActionPerformed(evt);
-            }
-        });
-        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                coloniaTFKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -374,9 +330,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(contrasenaTF)
-                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(numeroIdentificacionTF, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nombreUsuarioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(numeroIdentificacionTF)
+                                    .addComponent(nombreUsuarioTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombreTF)
                                     .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelDeListaLayout.createSequentialGroup()
@@ -461,9 +416,9 @@ public class IngresarUsuarios extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
@@ -471,44 +426,44 @@ public class IngresarUsuarios extends javax.swing.JFrame {
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
         //String domicilio = id_domicilio();
-        try{
+        try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "INSERT INTO USUARIOS(ID_USUARIOS, CONTRASENA, NOMBREUSUARIO, TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, DIRECCION) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
-            if(numeroIdentificacionTF.getText().equals("")){
+            if (numeroIdentificacionTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Ecriba el numero de identificacion del usuario");
-            }else{
+            } else {
                 pst.setString(1, numeroIdentificacionTF.getText());
             }
-            if(contrasenaTF.getText().equals("")){
+            if (contrasenaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
-            }else{
+            } else {
                 pst.setString(2, contrasenaTF.getText());
             }
-            if(nombreUsuarioTF.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Escriba un nombre para ELusuario");
-            }else{
+            if (nombreUsuarioTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
+            } else {
                 pst.setString(3, nombreUsuarioTF.getText());
             }
-            pst.setInt(4, tipoDeUsuarioCbx.getSelectedIndex()+1);
-            if(nombreTF.getText().equals("")){
+            pst.setInt(4, tipoDeUsuarioCbx.getSelectedIndex() + 1);
+            if (nombreTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
-            }else{
+            } else {
                 pst.setString(5, nombreTF.getText());
             }
-            if(apellidoPaternoTF.getText().equals("")){
+            if (apellidoPaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
-            }else{
+            } else {
                 pst.setString(6, apellidoPaternoTF.getText());
             }
-             if(apellidoMaternoTF.getText().equals("")){
+            if (apellidoMaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
-            }else{
+            } else {
                 pst.setString(7, apellidoMaternoTF.getText());
             }
-            if(telefonoTF.getText().equals("")){
+            if (telefonoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
-            }else{
+            } else {
                 pst.setString(8, telefonoTF.getText());
             }
             if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
@@ -516,29 +471,23 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             } else {
                 pst.setString(9, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
             }
-            
-            pst.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Usuario ingresado Exitosamente");
-            
-        }catch(SQLException ex){
-            if (ex.getErrorCode() == 1400) {
-                JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-            } else if (ex.getErrorCode() == 1) {
-                JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta igresar ya existe");
+            if (validarNombresApellidosUsuarios() == 0) {
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
             } else {
-                JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+                JOptionPane.showMessageDialog(null, "El usuario con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
+            }
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+                case 1400 ->
+                    JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+                case 1 ->
+                    JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
-
-    private void numeroIdentificacionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroIdentificacionTFActionPerformed
-
-    private void tipoDeUsuarioCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoDeUsuarioCbxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoDeUsuarioCbxActionPerformed
 
     private void numeroIdentificacionTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroIdentificacionTFKeyTyped
         // TODO add your handling code here:
@@ -551,11 +500,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_numeroIdentificacionTFKeyTyped
-
-    private void nombreUsuarioTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreUsuarioTFKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_nombreUsuarioTFKeyTyped
 
     private void nombreTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFKeyTyped
         // TODO add your handling code here:
@@ -605,30 +549,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_telefonoTFKeyTyped
 
-    private void calleTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calleTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFActionPerformed
-
-    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_calleTFKeyTyped
-
-    private void numeroTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFActionPerformed
-
-    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTFKeyTyped
-
-    private void coloniaTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloniaTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFActionPerformed
-
-    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coloniaTFKeyTyped
-
     /**
      * @param args the command line arguments
      */
@@ -641,19 +561,50 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
+
+    public int validarNombresApellidosUsuarios() {
+        int bandera = 1;
+
+        try {
+            Connection conCLNAU = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sqlCLNAU = "SELECT NOMBRE, APELLIDO_P, APELLIDO_M FROM USUARIOS WHERE NOMBRE=? AND APELLIDO_P=? AND APELLIDO_M=?";
+            PreparedStatement pstCLNAU = conCLNAU.prepareStatement(sqlCLNAU);
+            pstCLNAU.setString(2, apellidoPaternoTF.getText());
+            pstCLNAU.setString(3, apellidoMaternoTF.getText());
+            ResultSet rsCLNAU = pstCLNAU.executeQuery();
+
+            /*while (rs.next()) {
+                var nombreLocal = rs.getString("NOMBRE");
+                var apellido_pLocal = rs.getString("APELLIDO_P");
+                var apellido_mLocal = rs.getString("APELLIDO_M");
+                if (nombreTF.getText().equals(nombreLocal) || apellidoPaternoTF.getText().equals(apellido_pLocal) || apellidoMaternoTF.getText().equals(apellido_mLocal)) {
+                    bandera = 0;
+                }
+            }*/
+            if (rsCLNAU.next() == false) {
+                bandera = 0;
+            }
+
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+
+        return bandera;
+    }
+
     /*private void rellenarCbxDomicilio() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");

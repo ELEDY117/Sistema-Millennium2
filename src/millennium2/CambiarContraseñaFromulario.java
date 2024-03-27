@@ -245,8 +245,7 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cambiarContraseñaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarContraseñaBtnActionPerformed
-        validar();
-        System.out.println(validar());
+        validarCC();
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             // pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + passwordTF.getText() + "' WHERE ID_USUARIOS='" + numeroUsuarioTF.getText() + "'");
@@ -265,7 +264,7 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
             } else {
                 pst.setString(2, numeroUsuarioTF.getText());
             }
-            if (validar() == 1) {
+            if (validarCC() == 1) {
                 if (passwordTF.getText().equals(confirmarContraseñaTF.getText())) {
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Contraseña del usuario modificada");
@@ -318,15 +317,18 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
         }
     }
 
-    public int validar() {
+    public int validarCC() {
         int bandera = 1;
+        Connection conCC = null;
+        PreparedStatement pstCC = null;
+        ResultSet rsCC = null;
         try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_USUARIOS FROM USUARIOS WHERE ID_USUARIOS=?";
-            pst = con.prepareStatement(sql);
-            pst.setString(1, numeroUsuarioTF.getText());
-            rs = pst.executeQuery();
-            if (rs.next() == false) {
+            conCC = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sqlCC = "SELECT ID_USUARIOS FROM USUARIOS WHERE ID_USUARIOS=?";
+            pstCC = conCC.prepareStatement(sqlCC);
+            pstCC.setString(1, numeroUsuarioTF.getText());
+            rsCC = pstCC.executeQuery();
+            if (rsCC.next() == false) {
                 bandera = 0;
             }
         } catch (SQLException ex) {
