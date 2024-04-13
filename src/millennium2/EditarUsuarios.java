@@ -483,8 +483,12 @@ public class EditarUsuarios extends javax.swing.JFrame {
             String sql = "DELETE FROM USUARIOS WHERE ID_USUARIOS=?";
             pst = con.prepareStatement(sql);
             pst.setString(1, numeroIdentificacionTF.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            if (numeroIdentificacionTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Seleccione un usuario en la ventana anterior");
+            } else {
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Datos Eliminados");
+            }
             numeroIdentificacionTF.setText("");
             nombreUsuarioTF.setText("");
             contrasenaTF.setText("");

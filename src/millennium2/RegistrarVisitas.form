@@ -192,27 +192,27 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="registrarVisitaJL" min="-2" pref="185" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="botonIngresar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="botonEditar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="calleTF" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="numeroTF" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="coloniaTF" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="telefonoTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="apellidoMaternoTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="apellidoPaternoTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="nombreVisitanteTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="numeroVisitanteTF" alignment="0" max="32767" attributes="0"/>
-                              <Component id="contactoEmergenciaTF" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="calleTF" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="numeroTF" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="coloniaTF" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="registrarVisitaJL" alignment="0" pref="185" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="contactoEmergenciaTF" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="89" max="32767" attributes="0"/>
                   </Group>

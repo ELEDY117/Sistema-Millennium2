@@ -93,7 +93,6 @@ public class RegistrarVisitasRecepcionista extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Recepcionista");
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -288,24 +287,24 @@ public class RegistrarVisitasRecepcionista extends javax.swing.JFrame {
                         .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registrarVisitaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addComponent(botonIngresar)
                         .addGap(18, 18, 18)
                         .addComponent(botonEditar))
-                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(telefonoTF)
-                        .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nombreVisitanteTF)
-                        .addComponent(numeroVisitanteTF)
-                        .addComponent(contactoEmergenciaTF)
-                        .addGroup(panelDeListaLayout.createSequentialGroup()
-                            .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(telefonoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nombreVisitanteTF, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(numeroVisitanteTF, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(registrarVisitaJL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                    .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(

@@ -582,6 +582,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             Connection conCLNAU = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sqlCLNAU = "SELECT NOMBRE, APELLIDO_P, APELLIDO_M FROM USUARIOS WHERE NOMBRE=? AND APELLIDO_P=? AND APELLIDO_M=?";
             PreparedStatement pstCLNAU = conCLNAU.prepareStatement(sqlCLNAU);
+            pstCLNAU.setString(1, nombreTF.getText());
             pstCLNAU.setString(2, apellidoPaternoTF.getText());
             pstCLNAU.setString(3, apellidoMaternoTF.getText());
             ResultSet rsCLNAU = pstCLNAU.executeQuery();
