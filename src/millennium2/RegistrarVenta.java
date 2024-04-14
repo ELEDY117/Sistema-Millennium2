@@ -111,6 +111,8 @@ public class RegistrarVenta extends javax.swing.JFrame {
         productoJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jTextField2.setBackground(new java.awt.Color(242, 242, 242));
+        jTextField2.setMinimumSize(new java.awt.Dimension(60, 30));
+        jTextField2.setPreferredSize(new java.awt.Dimension(60, 30));
 
         cantidadJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         cantidadJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,6 +120,8 @@ public class RegistrarVenta extends javax.swing.JFrame {
         cantidadJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         cantidadFT.setBackground(new java.awt.Color(242, 242, 242));
+        cantidadFT.setMinimumSize(new java.awt.Dimension(60, 30));
+        cantidadFT.setPreferredSize(new java.awt.Dimension(60, 30));
 
         precioJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         precioJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,6 +133,9 @@ public class RegistrarVenta extends javax.swing.JFrame {
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(80, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(80, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -140,6 +147,9 @@ public class RegistrarVenta extends javax.swing.JFrame {
         botonEditar.setForeground(new java.awt.Color(255, 255, 255));
         botonEditar.setText("Editar");
         botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditar.setMaximumSize(new java.awt.Dimension(80, 30));
+        botonEditar.setMinimumSize(new java.awt.Dimension(80, 30));
+        botonEditar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -149,6 +159,8 @@ public class RegistrarVenta extends javax.swing.JFrame {
         precioCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         precioCbx.setBorder(null);
         precioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        precioCbx.setMinimumSize(new java.awt.Dimension(60, 30));
+        precioCbx.setPreferredSize(new java.awt.Dimension(60, 30));
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -177,16 +189,16 @@ public class RegistrarVenta extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(cantidadFT, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(panelDeListaLayout.createSequentialGroup()
                                 .addGap(111, 111, 111)
-                                .addComponent(botonIngresar)
+                                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonEditar))))
+                                .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,8 +224,8 @@ public class RegistrarVenta extends javax.swing.JFrame {
                             .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonIngresar)
-                            .addComponent(botonEditar))))
+                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -296,7 +308,7 @@ public class RegistrarVenta extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92)
                 .addComponent(panelDeLista, 373, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);

@@ -125,6 +125,7 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
 
         usuarioTF.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         usuarioTF.setBorder(null);
+        usuarioTF.setMinimumSize(new java.awt.Dimension(60, 30));
         usuarioTF.setPreferredSize(new java.awt.Dimension(200, 30));
         usuarioTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +180,7 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
 
         passwordPF.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         passwordPF.setBorder(null);
+        passwordPF.setMinimumSize(new java.awt.Dimension(60, 30));
         passwordPF.setPreferredSize(new java.awt.Dimension(200, 30));
         passwordPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

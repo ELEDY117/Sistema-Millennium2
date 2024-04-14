@@ -104,7 +104,8 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
 
         numeroUsuarioTF.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         numeroUsuarioTF.setBorder(null);
-        numeroUsuarioTF.setPreferredSize(new java.awt.Dimension(200, 30));
+        numeroUsuarioTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroUsuarioTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
         numeroUsuarioJL.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 14)); // NOI18N
         numeroUsuarioJL.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,7 +114,8 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
 
         passwordTF.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         passwordTF.setBorder(null);
-        passwordTF.setPreferredSize(new java.awt.Dimension(200, 30));
+        passwordTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        passwordTF.setPreferredSize(new java.awt.Dimension(60, 30));
         passwordTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTFActionPerformed(evt);
@@ -142,7 +144,8 @@ public class CambiarContraseñaFromulario extends javax.swing.JFrame {
 
         confirmarContraseñaTF.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         confirmarContraseñaTF.setBorder(null);
-        confirmarContraseñaTF.setPreferredSize(new java.awt.Dimension(200, 30));
+        confirmarContraseñaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        confirmarContraseñaTF.setPreferredSize(new java.awt.Dimension(60, 30));
         confirmarContraseñaTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarContraseñaTFActionPerformed(evt);

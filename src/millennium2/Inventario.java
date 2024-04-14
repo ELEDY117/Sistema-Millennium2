@@ -82,9 +82,10 @@ public class Inventario extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 650));
+        jPanel3.setPreferredSize(new java.awt.Dimension(900, 630));
 
-        panelDeLista.setPreferredSize(new java.awt.Dimension(500, 400));
+        panelDeLista.setMinimumSize(new java.awt.Dimension(600, 540));
+        panelDeLista.setPreferredSize(new java.awt.Dimension(600, 540));
 
         listaDeUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         listaDeUsuarios.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
@@ -115,6 +116,8 @@ public class Inventario extends javax.swing.JFrame {
         id_productoJL.setPreferredSize(new java.awt.Dimension(170, 20));
 
         idProductoTF.setBackground(new java.awt.Color(242, 242, 242));
+        idProductoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        idProductoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         idProductoTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idProductoTFActionPerformed(evt);
@@ -127,6 +130,8 @@ public class Inventario extends javax.swing.JFrame {
         productoJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jTextField2.setBackground(new java.awt.Color(242, 242, 242));
+        jTextField2.setMinimumSize(new java.awt.Dimension(60, 30));
+        jTextField2.setPreferredSize(new java.awt.Dimension(60, 30));
 
         cantidadJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         cantidadJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,6 +139,8 @@ public class Inventario extends javax.swing.JFrame {
         cantidadJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         cantidadFT.setBackground(new java.awt.Color(242, 242, 242));
+        cantidadFT.setMinimumSize(new java.awt.Dimension(60, 30));
+        cantidadFT.setPreferredSize(new java.awt.Dimension(60, 30));
 
         precioJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         precioJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -145,6 +152,9 @@ public class Inventario extends javax.swing.JFrame {
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -156,6 +166,9 @@ public class Inventario extends javax.swing.JFrame {
         botonEditar.setForeground(new java.awt.Color(255, 255, 255));
         botonEditar.setText("Editar");
         botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setPreferredSize(new java.awt.Dimension(70, 30));
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -163,14 +176,19 @@ public class Inventario extends javax.swing.JFrame {
         });
 
         precioCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
-        precioCbx.setBorder(null);
+        precioCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         precioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        precioCbx.setMinimumSize(new java.awt.Dimension(60, 30));
+        precioCbx.setPreferredSize(new java.awt.Dimension(60, 30));
 
         botonEliminar.setBackground(new java.awt.Color(166, 44, 26));
         botonEliminar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         botonEliminar.setText("Eliminar");
         botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEliminar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonEliminar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonEliminar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -182,55 +200,49 @@ public class Inventario extends javax.swing.JFrame {
         panelDeListaLayout.setHorizontalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDeListaLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(42, 42, 42)
+                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelDeListaLayout.createSequentialGroup()
-                                    .addGap(99, 99, 99)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                                .addGap(107, 107, 107)
-                                                .addComponent(productoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(id_productoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(idProductoTF)
-                                            .addComponent(jTextField2)))
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addGap(107, 107, 107)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cantidadJL, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cantidadFT, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                            .addComponent(precioCbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(botonIngresar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEditar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminar))))
+                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelDeListaLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(productoJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(id_productoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idProductoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cantidadJL, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cantidadFT, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDeListaLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -249,12 +261,16 @@ public class Inventario extends javax.swing.JFrame {
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
+                        .addGap(18, 18, 18)
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonIngresar)
-                            .addComponent(botonEditar)
-                            .addComponent(botonEliminar))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(9, 17, 43));
@@ -327,7 +343,7 @@ public class Inventario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(100, 100, 100)
                 .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -335,9 +351,9 @@ public class Inventario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
-                .addComponent(panelDeLista, 373, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);

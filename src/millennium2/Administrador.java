@@ -43,7 +43,7 @@ public class Administrador extends javax.swing.JFrame {
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
-                .addChild(new DrawerItem("Registrar Visita").build())
+                .addChild(new DrawerItem("Administrar Visitas").build())
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Registrar Venta").build())
                 .separator(2, new Color(255, 255, 255))
@@ -81,7 +81,8 @@ public class Administrador extends javax.swing.JFrame {
                                 admin.dispose();
                             break;
                             case 5:
-                                RegistrarVisitas mf5 = new RegistrarVisitas();
+                                AdministrarVisitas mf5 = new AdministrarVisitas();
+                                mf5.setUsuario(dato);
                                 mf5.setVisible(true);
                                 admin.dispose();
                             break;
@@ -221,7 +222,7 @@ public class Administrador extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129)
                 .addComponent(millenniumLogo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);

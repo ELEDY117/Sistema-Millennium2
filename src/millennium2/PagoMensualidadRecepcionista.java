@@ -29,7 +29,7 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild( new DrawerItem("Recepcionista").build())
+                .addChild( new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
                 .event(new EventDrawer(){
@@ -37,13 +37,13 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                     public void selected(int i, DrawerItem di){
                         switch (i){
                             case 0:
-                                Recepcionista mf = new Recepcionista();
-                                mf.setVisible(true);
+                                AdministrarSociosRecepcionista mf1 = new AdministrarSociosRecepcionista();
+                                mf1.setVisible(true);
                                 paMeRe.dispose();
                             break;
                             case 1:
-                                PagoMensualidadRecepcionista mf1 = new PagoMensualidadRecepcionista();
-                                mf1.setVisible(true);
+                                Recepcionista mf = new Recepcionista();
+                                mf.setVisible(true);
                                 paMeRe.dispose();
                             break;
                         }
@@ -111,6 +111,8 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         fechaJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         fechaTF.setBackground(new java.awt.Color(242, 242, 242));
+        fechaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        fechaTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
         precioJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         precioJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -122,6 +124,9 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(80, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(80, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -133,6 +138,9 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         botonEditar.setForeground(new java.awt.Color(255, 255, 255));
         botonEditar.setText("Editar");
         botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setPreferredSize(new java.awt.Dimension(70, 30));
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -142,12 +150,17 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         precioCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
         precioCbx.setBorder(null);
         precioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        precioCbx.setMinimumSize(new java.awt.Dimension(60, 30));
+        precioCbx.setPreferredSize(new java.awt.Dimension(60, 30));
 
         botonEliminar.setBackground(new java.awt.Color(166, 44, 26));
         botonEliminar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         botonEliminar.setText("Eliminar");
         botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEliminar.setMaximumSize(new java.awt.Dimension(80, 30));
+        botonEliminar.setMinimumSize(new java.awt.Dimension(80, 30));
+        botonEliminar.setPreferredSize(new java.awt.Dimension(80, 30));
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -170,24 +183,24 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                                     .addGroup(panelDeListaLayout.createSequentialGroup()
                                         .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelDeListaLayout.createSequentialGroup()
                                         .addComponent(fechaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(fechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addComponent(botonIngresar)
+                                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(botonEditar)
+                                        .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(botonEliminar))))
+                                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panelDeListaLayout.createSequentialGroup()
                                 .addGap(108, 108, 108)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,9 +222,9 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                             .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonIngresar)
-                            .addComponent(botonEditar)
-                            .addComponent(botonEliminar))
+                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );

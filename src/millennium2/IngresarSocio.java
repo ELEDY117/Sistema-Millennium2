@@ -172,7 +172,8 @@ public class IngresarSocio extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        panelDeLista.setPreferredSize(new java.awt.Dimension(500, 400));
+        panelDeLista.setMinimumSize(new java.awt.Dimension(600, 540));
+        panelDeLista.setPreferredSize(new java.awt.Dimension(600, 540));
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -199,6 +200,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         direccionJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroIdentificacionTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroIdentificacionTF.setPreferredSize(new java.awt.Dimension(60, 30));
         numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 numeroIdentificacionTFKeyTyped(evt);
@@ -206,6 +209,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         });
 
         nombreTF.setBackground(new java.awt.Color(242, 242, 242));
+        nombreTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        nombreTF.setPreferredSize(new java.awt.Dimension(60, 30));
         nombreTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nombreTFKeyTyped(evt);
@@ -213,6 +218,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         });
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
+        telefonoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        telefonoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         telefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoTFKeyTyped(evt);
@@ -226,6 +233,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         inscripcionJL.setPreferredSize(new java.awt.Dimension(100, 20));
 
         apellidoPaternoTF.setBackground(new java.awt.Color(242, 242, 242));
+        apellidoPaternoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        apellidoPaternoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         apellidoPaternoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 apellidoPaternoTFKeyTyped(evt);
@@ -243,6 +252,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         apellidoMaternoJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         apellidoMaternoTF.setBackground(new java.awt.Color(242, 242, 242));
+        apellidoMaternoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        apellidoMaternoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         apellidoMaternoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 apellidoMaternoTFKeyTyped(evt);
@@ -250,6 +261,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         });
 
         inscripcionTF.setEditable(false);
+        inscripcionTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        inscripcionTF.setPreferredSize(new java.awt.Dimension(60, 30));
         inscripcionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 inscripcionTFKeyTyped(evt);
@@ -263,6 +276,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         contactoEmergenciaJL.setPreferredSize(new java.awt.Dimension(100, 20));
 
         contactoEmergenciaTF.setBackground(new java.awt.Color(242, 242, 242));
+        contactoEmergenciaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        contactoEmergenciaTF.setPreferredSize(new java.awt.Dimension(60, 30));
         contactoEmergenciaTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 contactoEmergenciaTFKeyTyped(evt);
@@ -278,7 +293,8 @@ public class IngresarSocio extends javax.swing.JFrame {
         estatusCbx.setBackground(new java.awt.Color(242, 242, 242));
         estatusCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Al dia" }));
         estatusCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        estatusCbx.setPreferredSize(new java.awt.Dimension(70, 22));
+        estatusCbx.setMinimumSize(new java.awt.Dimension(60, 30));
+        estatusCbx.setPreferredSize(new java.awt.Dimension(60, 30));
 
         botonIngresar.setBackground(new java.awt.Color(166, 44, 26));
         botonIngresar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
@@ -287,7 +303,9 @@ public class IngresarSocio extends javax.swing.JFrame {
         botonIngresar.setBorder(null);
         botonIngresar.setBorderPainted(false);
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonIngresar.setPreferredSize(new java.awt.Dimension(75, 30));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(70, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -295,10 +313,31 @@ public class IngresarSocio extends javax.swing.JFrame {
         });
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
+        calleTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        calleTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFKeyTyped(evt);
+            }
+        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFKeyTyped(evt);
+            }
+        });
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
+        coloniaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        coloniaTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -310,14 +349,6 @@ public class IngresarSocio extends javax.swing.JFrame {
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(numeroIdentificacionTF)
-                                    .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelDeListaLayout.createSequentialGroup()
@@ -327,8 +358,8 @@ public class IngresarSocio extends javax.swing.JFrame {
                                             .addComponent(telefonoJL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(apellidoPaternoTF)
-                                            .addComponent(apellidoMaternoTF)
+                                            .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(panelDeListaLayout.createSequentialGroup()
                                         .addGap(45, 45, 45)
@@ -337,7 +368,16 @@ public class IngresarSocio extends javax.swing.JFrame {
                                         .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(numeroTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDeListaLayout.createSequentialGroup()
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(nombreJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(numeroIdentificacionJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(numeroIdentificacionTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
@@ -352,12 +392,11 @@ public class IngresarSocio extends javax.swing.JFrame {
                                     .addComponent(contactoEmergenciaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(contactoEmergenciaTF)
-                                    .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
-                                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)))))
+                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
@@ -405,7 +444,7 @@ public class IngresarSocio extends javax.swing.JFrame {
                     .addComponent(estatusCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -413,18 +452,18 @@ public class IngresarSocio extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -586,6 +625,42 @@ public class IngresarSocio extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_contactoEmergenciaTFKeyTyped
+
+    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
+        // TODO add your handling code here:
+        if (calleTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_calleTFKeyTyped
+
+    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
+        // TODO add your handling code here:
+        if (numeroTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_numeroTFKeyTyped
+
+    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
+        // TODO add your handling code here:
+        if (coloniaTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_coloniaTFKeyTyped
     
     public static void main(String args[]) {
         FlatIntelliJLaf.registerCustomDefaultsSource("style");

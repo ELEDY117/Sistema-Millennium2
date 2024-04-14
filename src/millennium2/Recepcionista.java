@@ -34,7 +34,7 @@ public class Recepcionista extends javax.swing.JFrame {
                 .enableScrollUI(false)
                 .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
-                .addChild(new DrawerItem("Registrar Visita").build())
+                .addChild(new DrawerItem("Administrar Visitas").build())
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Registrar Venta").build())
                 .separator(2, new Color(255, 255, 255))
@@ -50,7 +50,8 @@ public class Recepcionista extends javax.swing.JFrame {
                                 rep.dispose();
                             break;
                            case 1:
-                                RegistrarVisitasRecepcionista mf1 = new RegistrarVisitasRecepcionista();
+                                AdministrarVisitasRecepcionista mf1 = new AdministrarVisitasRecepcionista();
+                                mf1.setUsuario(dato);
                                 mf1.setVisible(true);
                                 rep.dispose();
                             break;

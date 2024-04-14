@@ -170,7 +170,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        panelDeLista.setPreferredSize(new java.awt.Dimension(500, 500));
+        panelDeLista.setMinimumSize(new java.awt.Dimension(600, 540));
+        panelDeLista.setPreferredSize(new java.awt.Dimension(600, 540));
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -183,7 +184,9 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         botonIngresar.setBorder(null);
         botonIngresar.setBorderPainted(false);
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonIngresar.setPreferredSize(new java.awt.Dimension(75, 30));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(70, 30));
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIngresarActionPerformed(evt);
@@ -211,6 +214,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(60, 20));
 
         numeroIdentificacionTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroIdentificacionTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroIdentificacionTF.setPreferredSize(new java.awt.Dimension(60, 30));
         numeroIdentificacionTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 numeroIdentificacionTFKeyTyped(evt);
@@ -218,6 +223,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         });
 
         nombreTF.setBackground(new java.awt.Color(242, 242, 242));
+        nombreTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        nombreTF.setPreferredSize(new java.awt.Dimension(60, 30));
         nombreTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nombreTFKeyTyped(evt);
@@ -225,6 +232,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         });
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
+        telefonoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        telefonoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         telefonoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoTFKeyTyped(evt);
@@ -244,9 +253,13 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         tipoDeUsuarioCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tipoDeUsuarioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tipoDeUsuarioCbx.setDoubleBuffered(true);
+        tipoDeUsuarioCbx.setMinimumSize(new java.awt.Dimension(60, 30));
         tipoDeUsuarioCbx.setName(""); // NOI18N
+        tipoDeUsuarioCbx.setPreferredSize(new java.awt.Dimension(60, 30));
 
         apellidoPaternoTF.setBackground(new java.awt.Color(242, 242, 242));
+        apellidoPaternoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        apellidoPaternoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         apellidoPaternoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 apellidoPaternoTFKeyTyped(evt);
@@ -264,6 +277,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         apellidoMaternoJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         apellidoMaternoTF.setBackground(new java.awt.Color(242, 242, 242));
+        apellidoMaternoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        apellidoMaternoTF.setPreferredSize(new java.awt.Dimension(60, 30));
         apellidoMaternoTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 apellidoMaternoTFKeyTyped(evt);
@@ -276,6 +291,8 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         jLabel9.setPreferredSize(new java.awt.Dimension(60, 20));
 
         nombreUsuarioTF.setBackground(new java.awt.Color(242, 242, 242));
+        nombreUsuarioTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        nombreUsuarioTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
         jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -283,12 +300,35 @@ public class IngresarUsuarios extends javax.swing.JFrame {
         jLabel10.setPreferredSize(new java.awt.Dimension(60, 20));
 
         contrasenaTF.setBackground(new java.awt.Color(242, 242, 242));
+        contrasenaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        contrasenaTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
         calleTF.setBackground(new java.awt.Color(242, 242, 242));
+        calleTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        calleTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        calleTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFKeyTyped(evt);
+            }
+        });
 
         numeroTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        numeroTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFKeyTyped(evt);
+            }
+        });
 
         coloniaTF.setBackground(new java.awt.Color(242, 242, 242));
+        coloniaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        coloniaTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        coloniaTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
@@ -308,7 +348,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(telefonoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tipoDeUsuarioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(panelDeListaLayout.createSequentialGroup()
                                     .addComponent(calleTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,24 +363,21 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                             .addComponent(apellidoMaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelDeListaLayout.createSequentialGroup()
                                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(contrasenaTF)
-                                    .addComponent(numeroIdentificacionTF)
+                                    .addComponent(contrasenaTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(numeroIdentificacionTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(nombreUsuarioTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombreTF)
-                                    .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)))
+                                    .addComponent(nombreTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(apellidoPaternoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(13, 13, 13)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(coloniaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +424,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                     .addComponent(tipoDeUsuarioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -396,17 +433,17 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -548,6 +585,42 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_telefonoTFKeyTyped
+
+    private void calleTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFKeyTyped
+        // TODO add your handling code here:
+        if (calleTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_calleTFKeyTyped
+
+    private void numeroTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFKeyTyped
+        // TODO add your handling code here:
+        if (numeroTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_numeroTFKeyTyped
+
+    private void coloniaTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFKeyTyped
+        // TODO add your handling code here:
+        if (coloniaTF.getText().length() == 20) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_coloniaTFKeyTyped
 
     /**
      * @param args the command line arguments

@@ -54,8 +54,6 @@ public class AdministrarSocios extends javax.swing.JFrame {
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Pago de Mensualidad").build())
                 .separator(2, new Color(255, 255, 255))
-                .addChild( new DrawerItem("Admnistrador").build())
-                .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
                 .event(new EventDrawer(){
                     @Override
