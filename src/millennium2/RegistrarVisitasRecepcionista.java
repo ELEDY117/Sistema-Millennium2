@@ -204,7 +204,7 @@ public class RegistrarVisitasRecepcionista extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeono");
+        telefonoJL.setText("Teléfeno");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -593,9 +593,9 @@ public class RegistrarVisitasRecepcionista extends javax.swing.JFrame {
             pst.setString(8, fecha());
             if (validarNombresApellidosVisitasRe() == 0) {
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
+                JOptionPane.showMessageDialog(null, "Visita ingresado exitosamente");
             } else {
-                JOptionPane.showMessageDialog(null, "El socio con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
+                JOptionPane.showMessageDialog(null, "La visita con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }
         } catch (SQLException ex) {
             switch (ex.getErrorCode()) {

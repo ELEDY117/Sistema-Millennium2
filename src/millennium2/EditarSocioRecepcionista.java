@@ -217,7 +217,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeono");
+        telefonoJL.setText("Teléfono");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -519,12 +519,12 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
                     pst.setString(2, nombreTF.getText());
                 }
                 if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
                 } else {
                     pst.setString(3, apellidoPaternoTF.getText());
                 }
                 if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
                 } else {
                     pst.setString(4, apellidoMaternoTF.getText());
                 }
@@ -558,12 +558,12 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
                     pst.setString(3, nombreTF.getText());
                 }
                 if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del socio");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
                 } else {
                     pst.setString(4, apellidoPaternoTF.getText());
                 }
                 if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del socio");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
                 } else {
                     pst.setString(5, apellidoMaternoTF.getText());
                 }

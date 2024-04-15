@@ -380,7 +380,7 @@
                   <Font name="Microsoft YaHei UI Light" size="14" style="2"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Tel&#xe9;feono"/>
+                <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="telefonoTF">

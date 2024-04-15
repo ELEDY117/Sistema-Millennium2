@@ -217,7 +217,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Teléfeono");
+        jLabel6.setText("Teléfono");
 
         telefonoTF.setBackground(new java.awt.Color(242, 242, 242));
         telefonoTF.setMinimumSize(new java.awt.Dimension(60, 30));
@@ -570,12 +570,12 @@ public class EditarUsuarios extends javax.swing.JFrame {
                     pst.setString(4, nombreTF.getText());
                 }
                 if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
                 } else {
                     pst.setString(5, apellidoPaternoTF.getText());
                 }
                 if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
                 } else {
                     pst.setString(6, apellidoMaternoTF.getText());
                 }
@@ -607,12 +607,12 @@ public class EditarUsuarios extends javax.swing.JFrame {
                     pst.setString(4, nombreTF.getText());
                 }
                 if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
                 } else {
                     pst.setString(5, apellidoPaternoTF.getText());
                 }
                 if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
+                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
                 } else {
                     pst.setString(6, apellidoMaternoTF.getText());
                 }

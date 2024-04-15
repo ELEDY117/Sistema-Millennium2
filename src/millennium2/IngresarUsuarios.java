@@ -489,12 +489,12 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 pst.setString(5, nombreTF.getText());
             }
             if (apellidoPaternoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el apelido paterno del usuario");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
             } else {
                 pst.setString(6, apellidoPaternoTF.getText());
             }
             if (apellidoMaternoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el apelido materno del usuario");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
             } else {
                 pst.setString(7, apellidoMaternoTF.getText());
             }
@@ -504,7 +504,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 pst.setString(8, telefonoTF.getText());
             }
             if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
+                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
             } else {
                 pst.setString(9, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
             }
