@@ -65,6 +65,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         botonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LoginIcon.png"))); // NOI18N
         botonLogin.setBorder(null);
         botonLogin.setBorderPainted(false);
+        botonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonLogin.setPreferredSize(new java.awt.Dimension(40, 40));
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

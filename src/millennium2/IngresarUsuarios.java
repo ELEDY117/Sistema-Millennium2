@@ -30,10 +30,10 @@ public class IngresarUsuarios extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    int indice = 0;
 
     public IngresarUsuarios() {
         initComponents();
-        //rellenarCbxDomicilio();
         this.setLocationRelativeTo(null);
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
@@ -462,7 +462,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
-        //String domicilio = id_domicilio();
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "INSERT INTO USUARIOS(ID_USUARIOS, CONTRASENA, NOMBREUSUARIO, TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, DIRECCION) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -471,46 +470,57 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ecriba el numero de identificacion del usuario");
             } else {
                 pst.setString(1, numeroIdentificacionTF.getText());
+                indice++;
             }
             if (contrasenaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
             } else {
                 pst.setString(2, contrasenaTF.getText());
+                indice++;
             }
             if (nombreUsuarioTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
             } else {
                 pst.setString(3, nombreUsuarioTF.getText());
+                indice++;
             }
             pst.setInt(4, tipoDeUsuarioCbx.getSelectedIndex() + 1);
             if (nombreTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
             } else {
                 pst.setString(5, nombreTF.getText());
+                indice++;
             }
             if (apellidoPaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
             } else {
                 pst.setString(6, apellidoPaternoTF.getText());
+                indice++;
             }
             if (apellidoMaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
             } else {
                 pst.setString(7, apellidoMaternoTF.getText());
+                indice++;
             }
             if (telefonoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
             } else {
                 pst.setString(8, telefonoTF.getText());
+                indice++;
             }
             if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
             } else {
                 pst.setString(9, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+                indice++;
             }
+            System.out.println(indice);
             if (validarNombresApellidosUsuarios() == 0) {
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
+                if (indice ==8) {
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }
@@ -604,7 +614,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+            if ((c < '0' || c > '9') && (c < '#' || c > '#')) {
                 evt.consume();
             }
         }
@@ -659,15 +669,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             pstCLNAU.setString(2, apellidoPaternoTF.getText());
             pstCLNAU.setString(3, apellidoMaternoTF.getText());
             ResultSet rsCLNAU = pstCLNAU.executeQuery();
-
-            /*while (rs.next()) {
-                var nombreLocal = rs.getString("NOMBRE");
-                var apellido_pLocal = rs.getString("APELLIDO_P");
-                var apellido_mLocal = rs.getString("APELLIDO_M");
-                if (nombreTF.getText().equals(nombreLocal) || apellidoPaternoTF.getText().equals(apellido_pLocal) || apellidoMaternoTF.getText().equals(apellido_mLocal)) {
-                    bandera = 0;
-                }
-            }*/
+            
             if (rsCLNAU.next() == false) {
                 bandera = 0;
             }
@@ -678,42 +680,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
 
         return bandera;
     }
-
-    /*private void rellenarCbxDomicilio() {
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                var ID_DOMICILIO = rs.getString("CALLE");
-                var ID_NUMERO = rs.getString("NUMERO");
-                var ID_COLONIA = rs.getString("COLONIA");
-                direccionCbx.addItem(ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    private String id_domicilio() {
-        String id = "";
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_DOMICILIO FROM DOMICILIO WHERE ID_DOMICILIO=?";
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, direccionCbx.getSelectedIndex() + 1);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                id = rs.getString("ID_DOMICILIO");
-            }
-            return id;
-        } catch (SQLException ex) {
-            System.out.print(ex);
-        }
-        return id;
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;

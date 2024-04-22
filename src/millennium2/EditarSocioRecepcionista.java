@@ -34,7 +34,6 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
     public EditarSocioRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //rellenarCbxDomicilio();
         rellenarCbxEstatus();
         AdministrarSociosRecepcionista ventana = new AdministrarSociosRecepcionista();
         numeroIdentificacionTF.setText(ventana.id_Socios);
@@ -43,7 +42,9 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
         apellidoMaternoTF.setText(ventana.materno);
         telefonoTF.setText(ventana.telefono);
         inscripcionTF.setText(ventana.inscripcion);
-        //calleTF.setText(ventana.domicilio);
+        calleTF.setText(ventana.calle);
+        numeroTF.setText(ventana.numero);
+        coloniaTF.setText(ventana.colonia);
         contactoEmergenciaTF.setText(ventana.contactoEmergencia);
         estatusCbx.setSelectedItem(ventana.estatus);
         drawer = Drawer.newDrawer(this)
@@ -508,7 +509,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         String estatusLocal = id_estatus();
         try {
-            if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
+            /*if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                 //pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
                 pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK= ? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO= ?");
@@ -542,7 +543,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
                 pst.setString(8, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del socio modificados");
-            } else {
+            } else {*/
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                 //pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
                 pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION=?, ID_ESTATUS_FK=? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO=? ");
@@ -581,7 +582,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
                 pst.setString(9, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del socio modificados");
-            }
+            //}
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del socio, revise la informacion");
         }
@@ -606,6 +607,9 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             apellidoMaternoTF.setText("");
             telefonoTF.setText("");
             contactoEmergenciaTF.setText("");
+            calleTF.setText("");
+            numeroTF.setText("");
+            coloniaTF.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede eliminar el socio, revise la infromación");
         }
@@ -702,7 +706,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+            if ((c < '0' || c > '9') && (c < '#' || c > '#')) {
                 evt.consume();
             }
         }
@@ -745,42 +749,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-
-    /*private void rellenarCbxDomicilio() {
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                var ID_DOMICILIO = rs.getString("CALLE");
-                var ID_NUMERO = rs.getString("NUMERO");
-                var ID_COLONIA = rs.getString("COLONIA");
-                direccionCbx.addItem(ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    private String id_domicilio() {
-        String id = "";
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_DOMICILIO FROM DOMICILIO WHERE ID_DOMICILIO=?";
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, direccionCbx.getSelectedIndex() + 1);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                id = rs.getString("ID_DOMICILIO");
-            }
-            return id;
-        } catch (SQLException ex) {
-            System.out.print(ex);
-        }
-        return id;
-     }*/
+    
     private void rellenarCbxEstatus() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");

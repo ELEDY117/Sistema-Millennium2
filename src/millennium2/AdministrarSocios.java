@@ -24,6 +24,7 @@ import java.sql.SQLException;
  * @author edy11
  */
 public class AdministrarSocios extends javax.swing.JFrame {
+
     DrawerController drawer;
     AdministrarSocios adminSos = this;
     Connection con = null;
@@ -37,9 +38,12 @@ public class AdministrarSocios extends javax.swing.JFrame {
     public static String materno = "";
     public static String telefono = "";
     public static String domicilio = "";
+    public static String calle = "";
+    public static String numero = "";
+    public static String colonia = "";
     public static String contactoEmergencia = "";
     public static String inscripcion = "";
-    
+
     public AdministrarSocios() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,43 +54,43 @@ public class AdministrarSocios extends javax.swing.JFrame {
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild( new DrawerItem("Ingresar Nuevo Socio").build())
+                .addChild(new DrawerItem("Ingresar Nuevo Socio").build())
                 .separator(2, new Color(255, 255, 255))
                 .addChild(new DrawerItem("Pago de Mensualidad").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
                                 IngresarSocio mf = new IngresarSocio();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
-                                adminSos.dispose(); 
-                            break;
+                                adminSos.dispose();
+                                break;
                             case 1:
                                 PagoMensualidad mf1 = new PagoMensualidad();
                                 mf1.setVisible(true);
                                 adminSos.dispose();
-                            break;
+                                break;
                             case 2:
                                 Administrador mf2 = new Administrador();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 adminSos.dispose();
-                            break;
+                                break;
                         }
                     }
-                 })
+                })
                 .build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         administradorJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -285,11 +289,10 @@ public class AdministrarSocios extends javax.swing.JFrame {
         int fila = tablaSocios.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila para acceder a la edicion del socio deseado");
-        }else
-        {
+        } else {
             id_Socios = (String) tablaSocios.getValueAt(fila, 0);
             rellenarSocios();
-            EditarSocio ventana =new EditarSocio();
+            EditarSocio ventana = new EditarSocio();
             ventana.setUsuario(dato);
             ventana.setVisible(true);
             this.dispose();
@@ -298,9 +301,9 @@ public class AdministrarSocios extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
@@ -317,19 +320,20 @@ public class AdministrarSocios extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
+
     public void actualizarTabla() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
@@ -356,41 +360,38 @@ public class AdministrarSocios extends javax.swing.JFrame {
 
         }
     }
-    
+
     public void rellenarSocios() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "SELECT ID_SOCIO, ESTATUS, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, TO_CHAR(INSCRIPCION, 'DD/MM/YYYY'), DIRECCION FROM SOCIOS, ESTATUS WHERE SOCIOS.ID_ESTATUS_FK = ESTATUS.ID_ESTATUS AND ID_SOCIO='" + id_Socios + "'ORDER BY ID_SOCIO ASC";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 estatus = rs.getString("ESTATUS");
                 nombre = rs.getString("NOMBRE");
                 paterno = rs.getString("APELLIDO_P");
                 materno = rs.getString("APELLIDO_M");
                 telefono = rs.getString("TELEFONO");
                 contactoEmergencia = rs.getString("NUM_EMERGENCIA");
-                inscripcion= rs.getString(8).substring(0, 10);
+                inscripcion = rs.getString(8).substring(0, 10);
                 domicilio = rs.getString("DIRECCION");
             }
-            
-            /*con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, SOCIOS, COLONIA WHERE SOCIOS.DOMICILIO_FK = DOMICILIO.ID_DOMICILIO AND DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA AND ID_SOCIO='" + id_Socios + "'");
-            rs = pst.executeQuery();
 
-            while (rs.next()) {
-                var ID_DOMICILIO = rs.getString("CALLE");
-                var ID_NUMERO = rs.getString("NUMERO");
-                var ID_COLONIA = rs.getString("COLONIA");
-                domicilio = (ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }*/
+            String datos = domicilio;
+            String[] palabras = datos.split(",\\s*");
+
+            // Guardar cada palabra en una variable
+            calle = palabras[0];
+            numero = palabras[1];
+            colonia = palabras[2];
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
 
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel administradorJL;

@@ -43,7 +43,9 @@ public class EditarUsuarios extends javax.swing.JFrame {
         apellidoPaternoTF.setText(ventana.paterno);
         apellidoMaternoTF.setText(ventana.materno);
         telefonoTF.setText(ventana.telefono);
-        //calleTF.setText(ventana.domicilio);
+        calleTF.setText(ventana.calle);
+        numeroTF.setText(ventana.numero);
+        coloniaTF.setText(ventana.colonia);
         tipoDeUsuarioCbx.setSelectedItem(ventana.tipoUsuario);
         this.setLocationRelativeTo(null);
         drawer = Drawer.newDrawer(this)
@@ -540,6 +542,9 @@ public class EditarUsuarios extends javax.swing.JFrame {
             apellidoPaternoTF.setText("");
             apellidoMaternoTF.setText("");
             telefonoTF.setText("");
+            calleTF.setText("");
+            numeroTF.setText("");
+            coloniaTF.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede eliminar el usuario, revise la infromación");
         }
@@ -549,7 +554,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
         //String domicilio = id_domicilio();
         String tipoUsuarioLocal = id_tipoUsuario();
         try {
-            if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
+            /*if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                 //pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
                 pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=? , NOMBREUSUARIO= ?, TIPO_USUARIO_FK= ?, NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO=? WHERE ID_USUARIOS= ?");
@@ -587,7 +592,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
                 pst.setString(8, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
-            } else {
+            } else {*/
                 con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                 pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=?, NOMBREUSUARIO=?, TIPO_USUARIO_FK=?, NOMBRE=?, APELLIDO_P=?, APELLIDO_M=?, TELEFONO=?, DIRECCION=? WHERE ID_USUARIOS=?");
                 if (contrasenaTF.getText().equals("")) {
@@ -629,7 +634,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
                 pst.setString(9, numeroIdentificacionTF.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
-            }
+            //}
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la informacion");
         }
@@ -713,7 +718,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+            if ((c < '0' || c > '9') && (c < '#' || c > '#')) {
                 evt.consume();
             }
         }
@@ -753,42 +758,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-
-    /*private void rellenarCbxDomicilio() {
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, COLONIA WHERE DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA ORDER BY ID_DOMICILIO ASC");
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                var ID_DOMICILIO = rs.getString("CALLE");
-                var ID_NUMERO = rs.getString("NUMERO");
-                var ID_COLONIA = rs.getString("COLONIA");
-                direccionCbx.addItem(ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
-    private String id_domicilio() {
-        String id = "";
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql = "SELECT ID_DOMICILIO FROM DOMICILIO WHERE ID_DOMICILIO=?";
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, direccionCbx.getSelectedIndex() + 1);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                id = rs.getString("ID_DOMICILIO");
-            }
-            return id;
-        } catch (SQLException ex) {
-            System.out.print(ex);
-        }
-        return id;
-    }*/
+    
     private void rellenarCbxTipoUsuario() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");

@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author eledy117
  */
 public class AdministrarUsuarios extends javax.swing.JFrame {
+
     DrawerController drawer;
     AdministrarUsuarios adminUs = this;
     Connection con = null;
@@ -39,7 +40,10 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
     public static String materno = "";
     public static String telefono = "";
     public static String domicilio = "";
-    
+    public static String calle = "";
+    public static String numero = "";
+    public static String colonia = "";
+
     public AdministrarUsuarios() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,36 +54,36 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild( new DrawerItem("Ingresar Nuevo Usuario").build())
+                .addChild(new DrawerItem("Ingresar Nuevo Usuario").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
                     public void selected(int i, DrawerItem di) {
-                        switch (i){
+                        switch (i) {
                             case 0:
                                 IngresarUsuarios ventana = new IngresarUsuarios();
                                 ventana.setUsuario(dato);
                                 ventana.setVisible(true);
                                 adminUs.dispose();
-                            break;
+                                break;
                             case 1:
                                 Administrador ventana2 = new Administrador();
                                 ventana2.setUsuario(dato);
                                 ventana2.setVisible(true);
                                 adminUs.dispose();
-                            break;
+                                break;
                         }
                     }
-                 })
+                })
                 .build();
     }
-    
-    public void setUsuario(String dato){
+
+    public void setUsuario(String dato) {
         this.dato = dato;
         administradorJL.setText(dato);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -143,11 +147,6 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaUsuariosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaUsuarios);
@@ -281,9 +280,9 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
@@ -294,21 +293,15 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
         int fila = tablaUsuarios.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila para acceder a la edicion del usuarios deseado");
-        }else
-        {
+        } else {
             id_Usuarios = (String) tablaUsuarios.getValueAt(fila, 0);
             rellenarUsuarios();
-            EditarUsuarios ventana =new EditarUsuarios();
+            EditarUsuarios ventana = new EditarUsuarios();
             ventana.setUsuario(dato);
             ventana.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_botonEditarActionPerformed
-
-    private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tablaUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -322,19 +315,20 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
-    
+
     public void actualizarTabla() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
@@ -361,15 +355,15 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
 
         }
     }
-    
+
     public void rellenarUsuarios() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql = "SELECT ID_USUARIOS, CONTRASENA, NOMBREUSUARIO , TIPO_USUARIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, DIRECCION FROM USUARIOS WHERE ID_USUARIOS='" + id_Usuarios + "'";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery(sql);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 contrasena = rs.getString("CONTRASENA");
                 nombreUsuario = rs.getString("NOMBREUSUARIO");
                 nombre = rs.getString("NOMBRE");
@@ -378,17 +372,14 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 telefono = rs.getString("TELEFONO");
                 domicilio = rs.getString("DIRECCION");
             }
-            
-            /*con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
-            pst = con.prepareStatement("SELECT CALLE, NUMERO, COLONIA FROM DOMICILIO, USUARIOS, COLONIA WHERE USUARIOS.DOMICILIO_FK = DOMICILIO.ID_DOMICILIO AND DOMICILIO.COLONIA_IDCOLONIA = COLONIA.ID_COLONIA AND ID_USUARIOS='" + id_Usuarios + "'");
-            rs = pst.executeQuery();
 
-            while (rs.next()) {
-                var ID_DOMICILIO = rs.getString("CALLE");
-                var ID_NUMERO = rs.getString("NUMERO");
-                var ID_COLONIA = rs.getString("COLONIA");
-                domicilio = (ID_NUMERO + ", " + ID_DOMICILIO + ", " + ID_COLONIA);
-            }*/
+            String datos = domicilio;
+            String[] palabras = datos.split(",\\s*");
+
+            // Guardar cada palabra en una variable
+            calle = palabras[0];
+            numero = palabras[1];
+            colonia = palabras[2];
             
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("SELECT TIPO_USUARIO FROM TIPO_USUARIOS, USUARIOS WHERE USUARIOS.TIPO_USUARIO_FK = TIPO_USUARIOS.ID_TIPOUSUARIO AND ID_USUARIOS='" + id_Usuarios + "' ORDER BY ID_TIPOUSUARIO ASC");
@@ -403,7 +394,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
 
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel administradorJL;
