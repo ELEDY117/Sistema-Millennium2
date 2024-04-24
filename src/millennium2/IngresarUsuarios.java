@@ -30,7 +30,6 @@ public class IngresarUsuarios extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    int indice = 0;
 
     public IngresarUsuarios() {
         initComponents();
@@ -470,57 +469,46 @@ public class IngresarUsuarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ecriba el numero de identificacion del usuario");
             } else {
                 pst.setString(1, numeroIdentificacionTF.getText());
-                indice++;
             }
             if (contrasenaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
             } else {
                 pst.setString(2, contrasenaTF.getText());
-                indice++;
             }
             if (nombreUsuarioTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
             } else {
                 pst.setString(3, nombreUsuarioTF.getText());
-                indice++;
             }
             pst.setInt(4, tipoDeUsuarioCbx.getSelectedIndex() + 1);
             if (nombreTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
             } else {
                 pst.setString(5, nombreTF.getText());
-                indice++;
             }
             if (apellidoPaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
             } else {
                 pst.setString(6, apellidoPaternoTF.getText());
-                indice++;
             }
             if (apellidoMaternoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
             } else {
                 pst.setString(7, apellidoMaternoTF.getText());
-                indice++;
             }
             if (telefonoTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
             } else {
                 pst.setString(8, telefonoTF.getText());
-                indice++;
             }
             if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
             } else {
                 pst.setString(9, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
-                indice++;
             }
-            System.out.println(indice);
             if (validarNombresApellidosUsuarios() == 0) {
-                if (indice ==8) {
-                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
-                }
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }
@@ -602,7 +590,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ') && (c < '0' || c > '9')) {
                 evt.consume();
             }
         }
@@ -626,7 +614,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ') && (c < '0' || c > '9')) {
                 evt.consume();
             }
         }
@@ -669,7 +657,7 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             pstCLNAU.setString(2, apellidoPaternoTF.getText());
             pstCLNAU.setString(3, apellidoMaternoTF.getText());
             ResultSet rsCLNAU = pstCLNAU.executeQuery();
-            
+
             if (rsCLNAU.next() == false) {
                 bandera = 0;
             }

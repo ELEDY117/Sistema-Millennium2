@@ -631,7 +631,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ') && (c < '0' || c > '9')) {
                 evt.consume();
             }
         }
@@ -655,7 +655,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            if ((c < 'A' || c > 'Z') && (c < ' ' || c > ' ') && (c < '0' || c > '9')) {
                 evt.consume();
             }
         }
