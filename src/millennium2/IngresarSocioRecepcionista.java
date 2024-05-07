@@ -525,17 +525,29 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
                 pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
             }
             pst.setString(9, fecha());
-           if (validarNombresApellidosSociosRecepcionista() == 0) {
+            if (validarNombresApellidosSociosRecepcionista() == 0) {
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Socio ingresado exitosamente");
+                numeroIdentificacionTF.setText("");
+                nombreTF.setText("");
+                apellidoPaternoTF.setText("");
+                apellidoMaternoTF.setText("");
+                telefonoTF.setText("");
+                contactoEmergenciaTF.setText("");
+                calleTF.setText("");
+                numeroTF.setText("");
+                coloniaTF.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "El socio con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }
         } catch (SQLException ex) {
             switch (ex.getErrorCode()) {
-                case 1400 -> JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-                case 1 -> JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
-                default -> JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+                case 1400 ->
+                    JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+                case 1 ->
+                    JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
@@ -643,7 +655,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
             evt.consume();
         } else {
             char c = evt.getKeyChar();
-            if ((c < '0' || c > '9') && (c< '#' || c>'#')) {
+            if ((c < '0' || c > '9') && (c < '#' || c > '#')) {
                 evt.consume();
             }
         }
@@ -733,7 +745,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
         return fechaFormateada;
     }
-    
+
     public int validarNombresApellidosSociosRecepcionista() {
         int bandera = 1;
 
@@ -764,7 +776,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
 
         return bandera;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel apellidoMaternoJL;

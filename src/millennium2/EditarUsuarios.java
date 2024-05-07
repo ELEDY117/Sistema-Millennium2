@@ -33,7 +33,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
     public EditarUsuarios() {
         initComponents();
-        //rellenarCbxDomicilio();
+        this.setLocationRelativeTo(null);
         rellenarCbxTipoUsuario();
         AdministrarUsuarios ventana = new AdministrarUsuarios();
         numeroIdentificacionTF.setText(ventana.id_Usuarios);
@@ -90,7 +90,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         panelDeLista = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -145,12 +144,10 @@ public class EditarUsuarios extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel4.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(jPanel4, java.awt.BorderLayout.PAGE_END);
+        setPreferredSize(new java.awt.Dimension(900, 650));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(900, 630));
+        jPanel1.setPreferredSize(new java.awt.Dimension(900, 650));
 
         panelDeLista.setMinimumSize(new java.awt.Dimension(600, 540));
         panelDeLista.setPreferredSize(new java.awt.Dimension(600, 540));
@@ -554,87 +551,51 @@ public class EditarUsuarios extends javax.swing.JFrame {
         //String domicilio = id_domicilio();
         String tipoUsuarioLocal = id_tipoUsuario();
         try {
-            /*if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
-                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                //pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA='" + contrasenaTF.getText() + "', NOMBREUSUARIO='" + nombreUsuarioTF.getText() + "', TIPO_USUARIO_FK='" + tipoUsuarioLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "' WHERE ID_USUARIOS='" + numeroIdentificacionTF.getText() + "'");
-                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=? , NOMBREUSUARIO= ?, TIPO_USUARIO_FK= ?, NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO=? WHERE ID_USUARIOS= ?");
-                if (contrasenaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
-                } else {
-                    pst.setString(1, contrasenaTF.getText());
-                }
-                if (nombreUsuarioTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
-                } else {
-                    pst.setString(2, nombreUsuarioTF.getText());
-                }
-                pst.setString(3, tipoUsuarioLocal);
-                if (nombreTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
-                } else {
-                    pst.setString(4, nombreTF.getText());
-                }
-                if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
-                } else {
-                    pst.setString(5, apellidoPaternoTF.getText());
-                }
-                if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
-                } else {
-                    pst.setString(6, apellidoMaternoTF.getText());
-                }
-                if (telefonoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
-                } else {
-                    pst.setString(7, telefonoTF.getText());
-                }
-                pst.setString(8, numeroIdentificacionTF.getText());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
-            } else {*/
-                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=?, NOMBREUSUARIO=?, TIPO_USUARIO_FK=?, NOMBRE=?, APELLIDO_P=?, APELLIDO_M=?, TELEFONO=?, DIRECCION=? WHERE ID_USUARIOS=?");
-                if (contrasenaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
-                } else {
-                    pst.setString(1, contrasenaTF.getText());
-                }
-                if (nombreUsuarioTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
-                } else {
-                    pst.setString(2, nombreUsuarioTF.getText());
-                }
-                pst.setString(3, tipoUsuarioLocal);
-                if (nombreTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
-                } else {
-                    pst.setString(4, nombreTF.getText());
-                }
-                if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
-                } else {
-                    pst.setString(5, apellidoPaternoTF.getText());
-                }
-                if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
-                } else {
-                    pst.setString(6, apellidoMaternoTF.getText());
-                }
-                if (telefonoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
-                } else {
-                    pst.setString(7, telefonoTF.getText());
-                }
-                if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
-                } else {
-                    pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
-                }
-                pst.setString(9, numeroIdentificacionTF.getText());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
-            //}
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            pst = con.prepareStatement("UPDATE USUARIOS SET CONTRASENA=?, NOMBREUSUARIO=?, TIPO_USUARIO_FK=?, NOMBRE=?, APELLIDO_P=?, APELLIDO_M=?, TELEFONO=?, DIRECCION=? WHERE ID_USUARIOS=?");
+            if (contrasenaTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba una contraseña para el usuario");
+            } else {
+                pst.setString(1, contrasenaTF.getText());
+            }
+            if (nombreUsuarioTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba un nombre para el usuario");
+            } else {
+                pst.setString(2, nombreUsuarioTF.getText());
+            }
+            pst.setString(3, tipoUsuarioLocal);
+            if (nombreTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el nombre del usuario");
+            } else {
+                pst.setString(4, nombreTF.getText());
+            }
+            if (apellidoPaternoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del usuario");
+            } else {
+                pst.setString(5, apellidoPaternoTF.getText());
+            }
+            if (apellidoMaternoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del usuario");
+            } else {
+                pst.setString(6, apellidoMaternoTF.getText());
+            }
+            if (telefonoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del usuario");
+            } else {
+                pst.setString(7, telefonoTF.getText());
+            }
+            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del usuario");
+            } else {
+                pst.setString(8, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+            }
+            pst.setString(9, numeroIdentificacionTF.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos del usuario modificados");
+            this.dispose();
+            AdministrarUsuarios mf2 = new AdministrarUsuarios();
+            mf2.setUsuario(dato);
+            mf2.setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los datos del usuario, revise la informacion");
         }
@@ -758,7 +719,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-    
+
     private void rellenarCbxTipoUsuario() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
@@ -818,7 +779,6 @@ public class EditarUsuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField nombreTF;
     private javax.swing.JTextField nombreUsuarioTF;

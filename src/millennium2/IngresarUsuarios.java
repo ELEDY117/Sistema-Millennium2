@@ -509,6 +509,16 @@ public class IngresarUsuarios extends javax.swing.JFrame {
             if (validarNombresApellidosUsuarios() == 0) {
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Usuario ingresado exitosamente");
+                numeroIdentificacionTF.setText("");
+                nombreUsuarioTF.setText("");
+                contrasenaTF.setText("");
+                nombreTF.setText("");
+                apellidoPaternoTF.setText("");
+                apellidoMaternoTF.setText("");
+                telefonoTF.setText("");
+                calleTF.setText("");
+                numeroTF.setText("");
+                coloniaTF.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "El usuario con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }

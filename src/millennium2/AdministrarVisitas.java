@@ -32,15 +32,18 @@ public class AdministrarVisitas extends javax.swing.JFrame {
     PreparedStatement pst = null;
     private String dato = "";
     public static String id_Visitas = "";
-    //public static String estatus = "";
     public static String nombre = "";
     public static String paterno = "";
     public static String materno = "";
     public static String telefono = "";
     public static String domicilio = "";
-    //public static String contactoEmergencia = "";
-    //public static String inscripcion = "";
-
+    public static String calle = "";
+    public static String numero = "";
+    public static String colonia = "";
+    public static String contactoEmergencia = "";
+    public static String inscripcion = "";
+    public static String contactoEmergenciavis = "";
+    
     public AdministrarVisitas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -53,25 +56,18 @@ public class AdministrarVisitas extends javax.swing.JFrame {
                 .enableScroll(true)
                 .addChild(new DrawerItem("Ingresar Nueva Visita").build())
                 .separator(2, new Color(255, 255, 255))
-                //.addChild(new DrawerItem("Pago de Mensualidad").build())
-                //.separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
                 .event(new EventDrawer() {
                     @Override
                     public void selected(int i, DrawerItem di) {
                         switch (i) {
                             case 0:
-                                RegistrarVisitas mf = new RegistrarVisitas();
+                                IngresarVisitas mf = new IngresarVisitas();
                                 mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 adminVis.dispose();
                                 break;
-                            /*case 1:
-                                PagoMensualidad mf1 = new PagoMensualidad();
-                                mf1.setVisible(true);
-                                adminVis.dispose();
-                            break;*/
-                            case 1:
+                            case 2:
                                 Administrador mf2 = new Administrador();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);
@@ -104,6 +100,7 @@ public class AdministrarVisitas extends javax.swing.JFrame {
         botonEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVisitas = new javax.swing.JTable();
+        botonEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -215,6 +212,19 @@ public class AdministrarVisitas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaVisitas);
 
+        botonEditar.setBackground(new java.awt.Color(166, 44, 26));
+        botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
+        botonEditar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEditar.setText("Editar");
+        botonEditar.setBorder(null);
+        botonEditar.setBorderPainted(false);
+        botonEditar.setPreferredSize(new java.awt.Dimension(75, 30));
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
         panelDeListaLayout.setHorizontalGroup(
@@ -226,12 +236,13 @@ public class AdministrarVisitas extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelDeListaLayout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(259, 259, 259))
         );
         panelDeListaLayout.setVerticalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +252,9 @@ public class AdministrarVisitas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -282,7 +295,6 @@ public class AdministrarVisitas extends javax.swing.JFrame {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
-        //Al dar click sobre los datos de la tabla y después presionar el botón de editar se rellenaran los campos de texto que coincidan con el texto en la pantalla de editar usuario para asi evitar que el usuario rellene esos campos 
         int fila = tablaVisitas.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un visitante para elimianrlo");
@@ -310,6 +322,21 @@ public class AdministrarVisitas extends javax.swing.JFrame {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        // TODO add your handling code here:
+        int fila = tablaVisitas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para acceder a la edicion del socio deseado");
+        } else {
+            id_Visitas = (String) tablaVisitas.getValueAt(fila, 0);
+            rellenarVisita();
+            EditarVisitas ventana = new EditarVisitas();
+            ventana.setUsuario(dato);
+            ventana.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_botonEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,10 +390,42 @@ public class AdministrarVisitas extends javax.swing.JFrame {
 
         }
     }
+    
+    public void rellenarVisita() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_VISITANTE, NOMBRE, APELLIDO_P, APELLIDO_M, TELEFONO, NUM_EMERGENCIA, TO_CHAR(FECHA_VISITA, 'DD/MM/YYYY'), DIRECCION FROM VISITAS WHERE ID_VISITANTE='" + id_Visitas + "'ORDER BY ID_VISITANTE ASC";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+                id_Visitas = rs.getString("ID_VISITANTE");
+                nombre = rs.getString("NOMBRE");
+                paterno = rs.getString("APELLIDO_P");
+                materno = rs.getString("APELLIDO_M");
+                telefono = rs.getString("TELEFONO");
+                contactoEmergencia = rs.getString("NUM_EMERGENCIA");
+                inscripcion = rs.getString(7).substring(0, 10);
+                domicilio = rs.getString("DIRECCION");
+            }
+
+            String datos = domicilio;
+            String[] palabras = datos.split(",\\s*");
+
+            // Guardar cada palabra en una variable
+            calle = palabras[0];
+            numero = palabras[1];
+            colonia = palabras[2];
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel administradorJL;
+    private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonMenu;
     private javax.swing.JLabel jLabel2;

@@ -509,80 +509,48 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         String estatusLocal = id_estatus();
         try {
-            /*if (calleTF.getText().equals("") && numeroTF.getText().equals("") && coloniaTF.getText().equals("")) {
-                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                //pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
-                pst = con.prepareStatement("UPDATE SOCIOS SET ID_ESTATUS_FK= ? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO= ?");
-                pst.setString(1, estatusLocal);
-                if (nombreTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
-                } else {
-                    pst.setString(2, nombreTF.getText());
-                }
-                if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
-                } else {
-                    pst.setString(3, apellidoPaternoTF.getText());
-                }
-                if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
-                } else {
-                    pst.setString(4, apellidoMaternoTF.getText());
-                }
-                if (telefonoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
-                } else {
-                    pst.setString(5, telefonoTF.getText());
-                }
-                if (contactoEmergenciaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
-                } else {
-                    pst.setString(6, contactoEmergenciaTF.getText());
-                }
-                pst.setString(7, inscripcionTF.getText());
-                pst.setString(8, numeroIdentificacionTF.getText());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Datos del socio modificados");
-            } else {*/
-                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-                //pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
-                pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION=?, ID_ESTATUS_FK=? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO=? ");
-                if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
-                } else {
-                    pst.setString(1, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
-                }
-                pst.setString(2, estatusLocal);
-                if (nombreTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
-                } else {
-                    pst.setString(3, nombreTF.getText());
-                }
-                if (apellidoPaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
-                } else {
-                    pst.setString(4, apellidoPaternoTF.getText());
-                }
-                if (apellidoMaternoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
-                } else {
-                    pst.setString(5, apellidoMaternoTF.getText());
-                }
-                if (telefonoTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
-                } else {
-                    pst.setString(6, telefonoTF.getText());
-                }
-                if (contactoEmergenciaTF.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
-                } else {
-                    pst.setString(7, contactoEmergenciaTF.getText());
-                }
-                pst.setString(8, inscripcionTF.getText());
-                pst.setString(9, numeroIdentificacionTF.getText());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Datos del socio modificados");
-            //}
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            //pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION='" + calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText() + "', ID_ESTATUS_FK='" + estatusLocal + "', NOMBRE='" + nombreTF.getText() + "', APELLIDO_P='" + apellidoPaternoTF.getText() + "', APELLIDO_M='" + apellidoMaternoTF.getText() + "', TELEFONO='" + telefonoTF.getText() + "', NUM_EMERGENCIA='" + contactoEmergenciaTF.getText() + "', INSCRIPCION='" + inscripcionTF.getText() + "' WHERE ID_SOCIO='" + numeroIdentificacionTF.getText() + "'");
+            pst = con.prepareStatement("UPDATE SOCIOS SET DIRECCION=?, ID_ESTATUS_FK=? , NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, INSCRIPCION= ? WHERE ID_SOCIO=? ");
+            if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
+            } else {
+                pst.setString(1, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
+            }
+            pst.setString(2, estatusLocal);
+            if (nombreTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
+            } else {
+                pst.setString(3, nombreTF.getText());
+            }
+            if (apellidoPaternoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
+            } else {
+                pst.setString(4, apellidoPaternoTF.getText());
+            }
+            if (apellidoMaternoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
+            } else {
+                pst.setString(5, apellidoMaternoTF.getText());
+            }
+            if (telefonoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
+            } else {
+                pst.setString(6, telefonoTF.getText());
+            }
+            if (contactoEmergenciaTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
+            } else {
+                pst.setString(7, contactoEmergenciaTF.getText());
+            }
+            pst.setString(8, inscripcionTF.getText());
+            pst.setString(9, numeroIdentificacionTF.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos del socio modificados");
+            this.dispose();
+            AdministrarSociosRecepcionista mf2 = new AdministrarSociosRecepcionista();
+            mf2.setUsuario(dato);
+            mf2.setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo modificar los dtos del socio, revise la informacion");
         }
@@ -749,7 +717,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
             super.paint(g);
         }
     }
-    
+
     private void rellenarCbxEstatus() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "MILLENNIUM2", "MILLENNIUM2");
