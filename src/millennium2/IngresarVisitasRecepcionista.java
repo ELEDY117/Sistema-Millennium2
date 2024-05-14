@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -182,6 +183,7 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
         botonIngresar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         botonIngresar.setText("Ingresar");
+        botonIngresar.setBorder(null);
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonIngresar.setMaximumSize(new java.awt.Dimension(80, 30));
         botonIngresar.setMinimumSize(new java.awt.Dimension(80, 30));
@@ -204,7 +206,7 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeno");
+        telefonoJL.setText("Teléfono");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -212,7 +214,7 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
         direccionJL.setText("Dirección");
         direccionJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
-        numeroVisitanteTF.setEditable(false);
+        numeroVisitanteTF.setBackground(new java.awt.Color(242, 242, 242));
         numeroVisitanteTF.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         numeroVisitanteTF.setMinimumSize(new java.awt.Dimension(60, 30));
         numeroVisitanteTF.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -324,7 +326,7 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
         panelDeLista.setLayout(panelDeListaLayout);
         panelDeListaLayout.setHorizontalGroup(
             panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDeListaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
                 .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelDeListaLayout.createSequentialGroup()
                         .addGap(101, 101, 101)
@@ -359,8 +361,8 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
                         .addComponent(contactoEmergenciaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -592,8 +594,28 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
             }
             pst.setString(8, fecha());
             if (validarNombresApellidosVisitasRe() == 0) {
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Visita ingresado exitosamente");
+                UIManager.put("OptionPane.yesButtonText", "Sí");
+                UIManager.put("OptionPane.noButtonText", "No");
+                UIManager.put("OptionPane.cancelButtonText", "Cancelar");
+                int option = JOptionPane.showConfirmDialog(null, "El cliente acepta los términos y condiciones en los cuales \nel gimnasio no se responsabiliza de cualquier perdida/extravió \nde objetos personales o lesiones ocurridas dentro de las instalaciones.", "Terminos y Condiciones", JOptionPane.YES_NO_CANCEL_OPTION);
+                switch (option) {
+                    case JOptionPane.YES_OPTION:
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Visita ingresada exitosamente");
+                        numeroVisitanteTF.setText("");
+                        nombreTF.setText("");
+                        apellidoPaternoTF.setText("");
+                        apellidoMaternoTF.setText("");
+                        telefonoTF.setText("");
+                        contactoEmergenciaTF.setText("");
+                        calleTF.setText("");
+                        numeroTF.setText("");
+                        coloniaTF.setText("");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "El cliente debe aceptar las condiciones para continuar");
+                        break;
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "La visita con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
             }
@@ -659,14 +681,6 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
             pstVNAVRE.setString(3, apellidoMaternoTF.getText());
             ResultSet rsVNAVRE = pstVNAVRE.executeQuery();
 
-            /*while (rs.next()) {
-                var nombreLocal = rs.getString("NOMBRE");
-                var apellido_pLocal = rs.getString("APELLIDO_P");
-                var apellido_mLocal = rs.getString("APELLIDO_M");
-                if (nombreTF.getText().equals(nombreLocal) || apellidoPaternoTF.getText().equals(apellido_pLocal) || apellidoMaternoTF.getText().equals(apellido_mLocal)) {
-                    bandera = 0;
-                }
-            }*/
             if (rsVNAVRE.next() == false) {
                 bandera = 0;
             }

@@ -67,7 +67,7 @@ public class AdministrarVisitas extends javax.swing.JFrame {
                                 mf.setVisible(true);
                                 adminVis.dispose();
                                 break;
-                            case 2:
+                            case 1:
                                 Administrador mf2 = new Administrador();
                                 mf2.setUsuario(dato);
                                 mf2.setVisible(true);

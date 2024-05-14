@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -104,8 +105,6 @@ public class IngresarVisitas extends javax.swing.JFrame {
         coloniaTF = new javax.swing.JTextField();
         contactoEmergenciaJL1 = new javax.swing.JLabel();
         fechaTF = new javax.swing.JTextField();
-        contactoEmergenciaJL2 = new javax.swing.JLabel();
-        CheckBoxVisitas = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,7 +208,7 @@ public class IngresarVisitas extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeno");
+        telefonoJL.setText("Teléfono");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -325,12 +324,6 @@ public class IngresarVisitas extends javax.swing.JFrame {
         fechaTF.setMinimumSize(new java.awt.Dimension(60, 30));
         fechaTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        contactoEmergenciaJL2.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
-        contactoEmergenciaJL2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contactoEmergenciaJL2.setText("¿Esta conforme con las condiciones del gimnasio del gimnasio?");
-        contactoEmergenciaJL2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        contactoEmergenciaJL2.setPreferredSize(new java.awt.Dimension(160, 20));
-
         javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
         panelDeLista.setLayout(panelDeListaLayout);
         panelDeListaLayout.setHorizontalGroup(
@@ -375,11 +368,7 @@ public class IngresarVisitas extends javax.swing.JFrame {
                             .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(104, 104, 104))
-                        .addGroup(panelDeListaLayout.createSequentialGroup()
-                            .addComponent(contactoEmergenciaJL2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CheckBoxVisitas))))
+                            .addGap(104, 104, 104))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         panelDeListaLayout.setVerticalGroup(
@@ -423,11 +412,7 @@ public class IngresarVisitas extends javax.swing.JFrame {
                     .addComponent(contactoEmergenciaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(contactoEmergenciaJL2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckBoxVisitas))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -542,21 +527,27 @@ public class IngresarVisitas extends javax.swing.JFrame {
             }
             pst.setString(8, fecha());
             if (validarNombresApellidosVisitas() == 0) {
-                if (CheckBoxVisitas.isSelected()) {
-                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Visita ingresada exitosamente");
-                    numeroVisitanteTF.setText("");
-                    nombreTF.setText("");
-                    apellidoPaternoTF.setText("");
-                    apellidoMaternoTF.setText("");
-                    telefonoTF.setText("");
-                    contactoEmergenciaTF.setText("");
-                    calleTF.setText("");
-                    numeroTF.setText("");
-                    coloniaTF.setText("");
-                    CheckBoxVisitas.setSelected(false);
-                } else {
-                    JOptionPane.showMessageDialog(null, "El cliente debe aceptar las condiciones para continuar");
+                UIManager.put("OptionPane.yesButtonText", "Sí");
+                UIManager.put("OptionPane.noButtonText", "No");
+                UIManager.put("OptionPane.cancelButtonText", "Cancelar");
+                int option = JOptionPane.showConfirmDialog(null, "El cliente acepta los términos y condiciones en los cuales \nel gimnasio no se responsabiliza de cualquier perdida/extravió \nde objetos personales o lesiones ocurridas dentro de las instalaciones.", "Terminos y Condiciones", JOptionPane.YES_NO_CANCEL_OPTION);
+                switch (option) {
+                    case JOptionPane.YES_OPTION:
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Visita ingresada exitosamente");
+                        numeroVisitanteTF.setText("");
+                        nombreTF.setText("");
+                        apellidoPaternoTF.setText("");
+                        apellidoMaternoTF.setText("");
+                        telefonoTF.setText("");
+                        contactoEmergenciaTF.setText("");
+                        calleTF.setText("");
+                        numeroTF.setText("");
+                        coloniaTF.setText("");
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        JOptionPane.showMessageDialog(null, "El cliente debe aceptar las condiciones para continuar");
+                        break;
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "La visita con el nombre " + nombreTF.getText() + " " + apellidoPaternoTF.getText() + " " + apellidoMaternoTF.getText() + " ya se encuentra registrado");
@@ -694,15 +685,6 @@ public class IngresarVisitas extends javax.swing.JFrame {
             pstVNAV.setString(2, apellidoPaternoTF.getText());
             pstVNAV.setString(3, apellidoMaternoTF.getText());
             ResultSet rsVNAV = pstVNAV.executeQuery();
-
-            /*while (rs.next()) {
-                var nombreLocal = rs.getString("NOMBRE");
-                var apellido_pLocal = rs.getString("APELLIDO_P");
-                var apellido_mLocal = rs.getString("APELLIDO_M");
-                if (nombreTF.getText().equals(nombreLocal) || apellidoPaternoTF.getText().equals(apellido_pLocal) || apellidoMaternoTF.getText().equals(apellido_mLocal)) {
-                    bandera = 0;
-                }
-            }*/
             if (rsVNAV.next() == false) {
                 bandera = 0;
             }
@@ -715,7 +697,6 @@ public class IngresarVisitas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox CheckBoxVisitas;
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JLabel administradorJL;
     private javax.swing.JLabel apellidoMaternoJL;
@@ -728,7 +709,6 @@ public class IngresarVisitas extends javax.swing.JFrame {
     private javax.swing.JTextField coloniaTF;
     private javax.swing.JLabel contactoEmergenciaJL;
     private javax.swing.JLabel contactoEmergenciaJL1;
-    private javax.swing.JLabel contactoEmergenciaJL2;
     private javax.swing.JTextField contactoEmergenciaTF;
     private javax.swing.JLabel direccionJL;
     private javax.swing.JTextField fechaTF;
