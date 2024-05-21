@@ -206,11 +206,12 @@
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="Reporte de inscripciones"/>
                     <StringItem index="1" value="Reporte de socios al dia"/>
                     <StringItem index="2" value="Reporte de socios pendiente"/>
                     <StringItem index="3" value="Reporte de visitas"/>
+                    <StringItem index="4" value="Reporte de Pagos de Mensualidad"/>
                   </StringArray>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

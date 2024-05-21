@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -40,7 +39,6 @@ public class Reporte extends javax.swing.JFrame {
 
     DrawerController drawer;
     Reporte re = this;
-    private String dato = "";
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -142,7 +140,7 @@ public class Reporte extends javax.swing.JFrame {
         primeraFcehaJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
         tipoReporteCbx.setBackground(new java.awt.Color(242, 242, 242));
-        tipoReporteCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de inscripciones", "Reporte de socios al dia", "Reporte de socios pendiente", "Reporte de visitas" }));
+        tipoReporteCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de inscripciones", "Reporte de socios al dia", "Reporte de socios pendiente", "Reporte de visitas", "Reporte de Pagos de Mensualidad" }));
         tipoReporteCbx.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tipoReporteCbx.setMinimumSize(new java.awt.Dimension(60, 30));
         tipoReporteCbx.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -612,6 +610,66 @@ public class Reporte extends javax.swing.JFrame {
 
                     }
 
+                } catch (SQLException ex) {
+                    switch (ex.getErrorCode()) {
+                        case 1400 ->
+                            JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+                        case 1 ->
+                            JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
+                        default ->
+                            JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+                    }
+                }
+            }
+
+            case 4 -> {
+                tablaReporte.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object[][]{
+                            {null, null, null},
+                            {null, null, null},
+                            {null, null, null},
+                            {null, null, null}
+                        },
+                        new String[]{
+                            "ID", "Nombre", "Fecha"
+                        }
+                ) {
+                    boolean[] canEdit = new boolean[]{
+                        false, false, false
+                    };
+
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                });
+
+                try {
+                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la primera fecha: ", "Primera Fecha", JOptionPane.QUESTION_MESSAGE);
+                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la segunda fecha: ", "Segunda Fecha", JOptionPane.QUESTION_MESSAGE);
+                    con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+                    pst = con.prepareStatement("SELECT ID_SOCIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TO_CHAR(FECHA,'DD/MM/YYYY') FROM SOCIOS, PAGOS WHERE PAGOS.ID_SOCIO_FK = SOCIOS.ID_SOCIO AND FECHA BETWEEN ? AND ? ORDER BY FECHA DESC");
+                    pst.setString(1, fecha1);
+                    pst.setString(2, fecha2);
+                    if (fecha1.equals("") && fecha2.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Escriba las fechas para el reporte");
+                    } else {
+                        rs = pst.executeQuery();
+                    }
+                    DefaultTableModel tblModel = (DefaultTableModel) tablaReporte.getModel();
+                    tblModel.setRowCount(0);
+
+                    while (rs.next()) {
+                        String id_socio = rs.getString("ID_SOCIO_FK");
+                        String nombre = rs.getString("NOMBRE");
+                        String paterno = rs.getString("APELLIDO_P");
+                        String materno = rs.getString("APELLIDO_M");
+                        String fecha = rs.getString(5).substring(0, 10);
+
+                        String tbData[] = {id_socio, nombre + " " + paterno + " " + materno, fecha};
+
+                        tblModel.addRow(tbData);
+
+                    }
                 } catch (SQLException ex) {
                     switch (ex.getErrorCode()) {
                         case 1400 ->

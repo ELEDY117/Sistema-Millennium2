@@ -4,61 +4,84 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javaswingdev.drawer.Drawer;
+import java.sql.DriverManager;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
 import javaswingdev.drawer.EventDrawer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author edy11
  */
 public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
+
     DrawerController drawer;
     PagoMensualidadRecepcionista paMeRe = this;
-    
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    private String dato = "";
+    public static String id_Socio_fk = "";
+    public static String cantidad = "";
+    public static String fecha = "";
+
     public PagoMensualidadRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        actualizarTabla();
+        fechaTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild( new DrawerItem("Administrar Socios").build())
+                .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
                                 AdministrarSociosRecepcionista mf1 = new AdministrarSociosRecepcionista();
                                 mf1.setVisible(true);
                                 paMeRe.dispose();
-                            break;
+                                break;
                             case 1:
                                 Recepcionista mf = new Recepcionista();
                                 mf.setVisible(true);
                                 paMeRe.dispose();
-                            break;
+                                break;
                         }
                     }
-                 })
+                })
                 .build();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        panelDeLista = new javax.swing.JPanel();
-        listaDeUsuarios = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        LoginLogo = new FondoPanel2();
+        reporteJL = new javax.swing.JLabel();
+        botonMenu = new javax.swing.JButton();
+        numeroSocio = new javax.swing.JPanel();
         generarReporteJL = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         fechaJL = new javax.swing.JLabel();
@@ -66,168 +89,17 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         precioJL = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
-        precioCbx = new javax.swing.JComboBox<>();
-        botonEliminar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        LoginLogo = new FondoPanel2();
-        reporteJL = new javax.swing.JLabel();
-        botonMenu = new javax.swing.JButton();
+        fechaJL1 = new javax.swing.JLabel();
+        numeroSocioTF = new javax.swing.JTextField();
+        pagoTF = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblPagos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(900, 650));
-
-        panelDeLista.setPreferredSize(new java.awt.Dimension(500, 400));
-
-        listaDeUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        listaDeUsuarios.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        listaDeUsuarios.setPreferredSize(new java.awt.Dimension(400, 300));
-
-        javax.swing.GroupLayout listaDeUsuariosLayout = new javax.swing.GroupLayout(listaDeUsuarios);
-        listaDeUsuarios.setLayout(listaDeUsuariosLayout);
-        listaDeUsuariosLayout.setHorizontalGroup(
-            listaDeUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
-        );
-        listaDeUsuariosLayout.setVerticalGroup(
-            listaDeUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 239, Short.MAX_VALUE)
-        );
-
-        generarReporteJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
-        generarReporteJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        generarReporteJL.setText("Socios");
-
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Datos del Pago");
-
-        fechaJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
-        fechaJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fechaJL.setText("Fecha");
-        fechaJL.setPreferredSize(new java.awt.Dimension(60, 20));
-
-        fechaTF.setBackground(new java.awt.Color(242, 242, 242));
-        fechaTF.setMinimumSize(new java.awt.Dimension(60, 30));
-        fechaTF.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        precioJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
-        precioJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        precioJL.setText("Precio");
-        precioJL.setPreferredSize(new java.awt.Dimension(60, 20));
-
-        botonIngresar.setBackground(new java.awt.Color(166, 44, 26));
-        botonIngresar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        botonIngresar.setText("Ingresar");
-        botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonIngresar.setMaximumSize(new java.awt.Dimension(80, 30));
-        botonIngresar.setMinimumSize(new java.awt.Dimension(80, 30));
-        botonIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
-        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonIngresarActionPerformed(evt);
-            }
-        });
-
-        botonEditar.setBackground(new java.awt.Color(166, 44, 26));
-        botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonEditar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEditar.setText("Editar");
-        botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEditar.setMaximumSize(new java.awt.Dimension(70, 30));
-        botonEditar.setMinimumSize(new java.awt.Dimension(70, 30));
-        botonEditar.setPreferredSize(new java.awt.Dimension(70, 30));
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActionPerformed(evt);
-            }
-        });
-
-        precioCbx.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
-        precioCbx.setBorder(null);
-        precioCbx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        precioCbx.setMinimumSize(new java.awt.Dimension(60, 30));
-        precioCbx.setPreferredSize(new java.awt.Dimension(60, 30));
-
-        botonEliminar.setBackground(new java.awt.Color(166, 44, 26));
-        botonEliminar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEliminar.setMaximumSize(new java.awt.Dimension(80, 30));
-        botonEliminar.setMinimumSize(new java.awt.Dimension(80, 30));
-        botonEliminar.setPreferredSize(new java.awt.Dimension(80, 30));
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelDeListaLayout = new javax.swing.GroupLayout(panelDeLista);
-        panelDeLista.setLayout(panelDeListaLayout);
-        panelDeListaLayout.setHorizontalGroup(
-            panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDeListaLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addGap(72, 72, 72)
-                                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addComponent(fechaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panelDeListaLayout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelDeListaLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-        panelDeListaLayout.setVerticalGroup(
-            panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDeListaLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listaDeUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDeListaLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fechaJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioCbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(panelDeListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)))
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
 
         jPanel1.setBackground(new java.awt.Color(9, 17, 43));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 70));
@@ -293,23 +165,182 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        numeroSocio.setPreferredSize(new java.awt.Dimension(500, 400));
+
+        generarReporteJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
+        generarReporteJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        generarReporteJL.setText("Pagos");
+
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Datos del Pago");
+
+        fechaJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
+        fechaJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fechaJL.setText("Fecha");
+        fechaJL.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        fechaTF.setEditable(false);
+        fechaTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        fechaTF.setPreferredSize(new java.awt.Dimension(60, 30));
+
+        precioJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
+        precioJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioJL.setText("Precio");
+        precioJL.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        botonIngresar.setBackground(new java.awt.Color(166, 44, 26));
+        botonIngresar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
+        botonIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        botonIngresar.setText("Pagar");
+        botonIngresar.setBorder(null);
+        botonIngresar.setBorderPainted(false);
+        botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonIngresar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarActionPerformed(evt);
+            }
+        });
+
+        botonEditar.setBackground(new java.awt.Color(166, 44, 26));
+        botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
+        botonEditar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEditar.setText("Actualizar Precios");
+        botonEditar.setBorder(null);
+        botonEditar.setBorderPainted(false);
+        botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditar.setMaximumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setMinimumSize(new java.awt.Dimension(70, 30));
+        botonEditar.setPreferredSize(new java.awt.Dimension(70, 30));
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
+
+        fechaJL1.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
+        fechaJL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fechaJL1.setText("Numero de Socio");
+        fechaJL1.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        numeroSocioTF.setBackground(new java.awt.Color(242, 242, 242));
+        numeroSocioTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        numeroSocioTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        numeroSocioTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroSocioTFKeyTyped(evt);
+            }
+        });
+
+        pagoTF.setEditable(false);
+        pagoTF.setText("450");
+        pagoTF.setMinimumSize(new java.awt.Dimension(60, 30));
+        pagoTF.setPreferredSize(new java.awt.Dimension(60, 30));
+
+        tblPagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Numero de Socio", "Cantidad", "Fecha"
+            }
+        ));
+        jScrollPane2.setViewportView(tblPagos);
+
+        javax.swing.GroupLayout numeroSocioLayout = new javax.swing.GroupLayout(numeroSocio);
+        numeroSocio.setLayout(numeroSocioLayout);
+        numeroSocioLayout.setHorizontalGroup(
+            numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, numeroSocioLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(numeroSocioLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(numeroSocioLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(numeroSocioLayout.createSequentialGroup()
+                                .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(pagoTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(numeroSocioLayout.createSequentialGroup()
+                                .addComponent(fechaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(numeroSocioLayout.createSequentialGroup()
+                                .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(numeroSocioLayout.createSequentialGroup()
+                        .addComponent(fechaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numeroSocioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(64, 64, 64))
+            .addGroup(numeroSocioLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        numeroSocioLayout.setVerticalGroup(
+            numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(numeroSocioLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, numeroSocioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroSocioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechaJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pagoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(panelDeLista, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(numeroSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(25, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(panelDeLista, 373, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addContainerGap(580, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(125, 125, 125)
+                    .addComponent(numeroSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(125, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -319,30 +350,84 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        // TODO add your handling code here:
+        //INSERT DE PAGO
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql1 = "INSERT INTO PAGOS(ID_SOCIO_FK, CANTIDAD, FECHA) VALUES(?,?,?)";
+            pst = con.prepareStatement(sql1);
+            if (numeroSocioTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el numero de identificacion del socio");
+            } else {
+                pst.setString(1, numeroSocioTF.getText());
+            }
+            if (pagoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "");
+            } else {
+                pst.setString(2, pagoTF.getText());
+            }
+            pst.setString(3, fecha());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Pago ingresado exitosamente");
+            actualizarTabla();
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+                case 1400 ->
+                    JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+            }
+        }
+
+        //UPDATE PARA ESTATUS
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql1 = "UPDATE SOCIOS SET ID_ESTATUS_FK = '1' WHERE ID_SOCIO = ?";
+            pst = con.prepareStatement(sql1);
+            pst.setString(1, numeroSocioTF.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Estado del socio modificado");
+
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la accion, revise la información");
+            }
+        }
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
+        String nuevoPago = JOptionPane.showInputDialog("Ingrese un nuevo precio: ");
+        pagoTF.setText(nuevoPago);
     }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    private void numeroSocioTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroSocioTFKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarActionPerformed
+        if (numeroSocioTF.getText().length() == 6) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if (c < '0' || c > '9') {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_numeroSocioTFKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       FlatIntelliJLaf.registerCustomDefaultsSource("style");
+        FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -350,35 +435,94 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
+
+    public void actualizarTabla() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_SOCIO_FK, CANTIDAD, TO_CHAR(FECHA, 'DD/MM/YYYY') FROM PAGOS";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            DefaultTableModel tblModel = (DefaultTableModel) tblPagos.getModel();
+            tblModel.setRowCount(0);
+
+            while (rs.next()) {
+                String id_Socio_fk = rs.getString("ID_SOCIO_FK");
+                String cantidad = rs.getString("CANTIDAD");
+                String fecha = rs.getString(3).substring(0, 10);
+
+                String tbData[] = {id_Socio_fk, cantidad, fecha};
+
+                tblModel.addRow(tbData);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void rellenarPagos() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_SOCIO_FK, CANTIDAD, FECHA,FROM PAGOS";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+                id_Socio_fk = rs.getString("ID_SOCIO");
+                cantidad = rs.getString("CANTIDAD");
+                fecha = rs.getString("FECHA");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    private String fecha() {
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crear un formateador para el formato DD/MM/AAAA
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Formatear la fecha
+        String fechaFormateada = fechaActual.format(formateador);
+
+        return fechaFormateada;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JButton botonEditar;
-    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonMenu;
     private javax.swing.JLabel fechaJL;
+    private javax.swing.JLabel fechaJL1;
     private javax.swing.JTextField fechaTF;
     private javax.swing.JLabel generarReporteJL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel listaDeUsuarios;
-    private javax.swing.JPanel panelDeLista;
-    private javax.swing.JComboBox<String> precioCbx;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel numeroSocio;
+    private javax.swing.JTextField numeroSocioTF;
+    private javax.swing.JTextField pagoTF;
     private javax.swing.JLabel precioJL;
     private javax.swing.JLabel reporteJL;
+    private javax.swing.JTable tblPagos;
     // End of variables declaration//GEN-END:variables
 }

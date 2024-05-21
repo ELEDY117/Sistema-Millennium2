@@ -4,54 +4,73 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javaswingdev.drawer.Drawer;
+import java.sql.DriverManager;
 import javaswingdev.drawer.DrawerController;
 import javaswingdev.drawer.DrawerItem;
 import javaswingdev.drawer.EventDrawer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author edy11
  */
 public class PagoMensualidad extends javax.swing.JFrame {
+
     DrawerController drawer;
     PagoMensualidad paMen = this;
-    
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    private String dato = "";
+    public static String id_Socio_fk = "";
+    public static String cantidad = "";
+    public static String fecha = "";
+
     public PagoMensualidad() {
         initComponents();
         this.setLocationRelativeTo(null);
+        actualizarTabla();
+        fechaTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))
                 .background(new Color(255, 255, 255))
                 .drawerBackground(new Color(166, 44, 26))
                 .enableScroll(true)
-                .addChild(new DrawerItem("Administrar Usuarios").build())
+                .addChild(new DrawerItem("Administrar Socios").build())
                 .separator(2, new Color(255, 255, 255))
                 .addFooter(new DrawerItem("Regresar").build())
-                .event(new EventDrawer(){
+                .event(new EventDrawer() {
                     @Override
-                    public void selected(int i, DrawerItem di){
-                        switch (i){
+                    public void selected(int i, DrawerItem di) {
+                        switch (i) {
                             case 0:
-                                AdministrarUsuarios mf2 = new AdministrarUsuarios();
+                                AdministrarSocios mf2 = new AdministrarSocios();
                                 mf2.setVisible(true);
                                 paMen.dispose();
-                            break;
+                                break;
                             case 1:
                                 Administrador mf = new Administrador();
                                 mf.setVisible(true);
                                 paMen.dispose();
-                            break;
-                            
+                                break;
+
                         }
                     }
-                 }).build();
+                }).build();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,12 +86,11 @@ public class PagoMensualidad extends javax.swing.JFrame {
         precioJL = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
         fechaJL1 = new javax.swing.JLabel();
         numeroSocioTF = new javax.swing.JTextField();
         pagoTF = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblPagos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         LoginLogo = new FondoPanel2();
@@ -113,7 +131,7 @@ public class PagoMensualidad extends javax.swing.JFrame {
         fechaJL.setText("Fecha");
         fechaJL.setPreferredSize(new java.awt.Dimension(60, 20));
 
-        fechaTF.setBackground(new java.awt.Color(242, 242, 242));
+        fechaTF.setEditable(false);
         fechaTF.setMinimumSize(new java.awt.Dimension(60, 30));
         fechaTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
@@ -141,7 +159,7 @@ public class PagoMensualidad extends javax.swing.JFrame {
         botonEditar.setBackground(new java.awt.Color(166, 44, 26));
         botonEditar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
         botonEditar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEditar.setText("Editar");
+        botonEditar.setText("Actualizar Precios");
         botonEditar.setBorder(null);
         botonEditar.setBorderPainted(false);
         botonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -154,22 +172,6 @@ public class PagoMensualidad extends javax.swing.JFrame {
             }
         });
 
-        botonEliminar.setBackground(new java.awt.Color(166, 44, 26));
-        botonEliminar.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 12)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setBorder(null);
-        botonEliminar.setBorderPainted(false);
-        botonEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEliminar.setMaximumSize(new java.awt.Dimension(70, 30));
-        botonEliminar.setMinimumSize(new java.awt.Dimension(70, 30));
-        botonEliminar.setPreferredSize(new java.awt.Dimension(80, 30));
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
-
         fechaJL1.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         fechaJL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fechaJL1.setText("Numero de Socio");
@@ -178,12 +180,18 @@ public class PagoMensualidad extends javax.swing.JFrame {
         numeroSocioTF.setBackground(new java.awt.Color(242, 242, 242));
         numeroSocioTF.setMinimumSize(new java.awt.Dimension(60, 30));
         numeroSocioTF.setPreferredSize(new java.awt.Dimension(60, 30));
+        numeroSocioTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroSocioTFKeyTyped(evt);
+            }
+        });
 
-        pagoTF.setBackground(new java.awt.Color(242, 242, 242));
+        pagoTF.setEditable(false);
+        pagoTF.setText("450");
         pagoTF.setMinimumSize(new java.awt.Dimension(60, 30));
         pagoTF.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -191,10 +199,10 @@ public class PagoMensualidad extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Numero de Socio", "Monto", "Fecha"
+                "Numero de Socio", "Cantidad", "Fecha"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblPagos);
 
         javax.swing.GroupLayout numeroSocioLayout = new javax.swing.GroupLayout(numeroSocio);
         numeroSocio.setLayout(numeroSocioLayout);
@@ -210,7 +218,7 @@ public class PagoMensualidad extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(numeroSocioLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(numeroSocioLayout.createSequentialGroup()
                                 .addComponent(precioJL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -222,14 +230,12 @@ public class PagoMensualidad extends javax.swing.JFrame {
                             .addGroup(numeroSocioLayout.createSequentialGroup()
                                 .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(botonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(numeroSocioLayout.createSequentialGroup()
                         .addComponent(fechaJL1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(numeroSocioTF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26))
+                .addGap(64, 64, 64))
             .addGroup(numeroSocioLayout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addComponent(generarReporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,8 +267,7 @@ public class PagoMensualidad extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(numeroSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68))
         );
 
@@ -335,7 +340,7 @@ public class PagoMensualidad extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(24, 24, 24)
                 .addComponent(numeroSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -343,9 +348,9 @@ public class PagoMensualidad extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(75, 75, 75)
                 .addComponent(numeroSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -355,24 +360,77 @@ public class PagoMensualidad extends javax.swing.JFrame {
 
     private void botonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenuActionPerformed
         // TODO add your handling code here:
-        if(drawer.isShow()){
+        if (drawer.isShow()) {
             drawer.hide();
-        } else{
+        } else {
             drawer.show();
         }
     }//GEN-LAST:event_botonMenuActionPerformed
 
-    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonIngresarActionPerformed
-
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         // TODO add your handling code here:
+        String nuevoPago = JOptionPane.showInputDialog("Ingrese un nuevo precio: ");
+        pagoTF.setText(nuevoPago);
     }//GEN-LAST:event_botonEditarActionPerformed
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarActionPerformed
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        //INSERT DE PAGO
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql1 = "INSERT INTO PAGOS(ID_SOCIO_FK, CANTIDAD, FECHA) VALUES(?,?,?)";
+            pst = con.prepareStatement(sql1);
+            if (numeroSocioTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el numero de identificacion del socio");
+            } else {
+                pst.setString(1, numeroSocioTF.getText());
+            }
+            if (pagoTF.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "");
+            } else {
+                pst.setString(2, pagoTF.getText());
+            }
+            pst.setString(3, fecha());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Pago ingresado exitosamente");
+            actualizarTabla();
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+                case 1400 ->
+                    JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
+
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
+            }
+        }
+
+        //UPDATE PARA ESTATUS
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql1 = "UPDATE SOCIOS SET ID_ESTATUS_FK = '1' WHERE ID_SOCIO = ?";
+            pst = con.prepareStatement(sql1);
+            pst.setString(1, numeroSocioTF.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Estado del socio modificado");
+
+        } catch (SQLException ex) {
+            switch (ex.getErrorCode()) {
+
+                default ->
+                    JOptionPane.showMessageDialog(null, "No se ha podido completar la accion, revise la información");
+            }
+        }
+    }//GEN-LAST:event_botonIngresarActionPerformed
+
+    private void numeroSocioTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroSocioTFKeyTyped
+        if (numeroSocioTF.getText().length() == 6) {
+            evt.consume();
+        } else {
+            char c = evt.getKeyChar();
+            if (c < '0' || c > '9') {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_numeroSocioTFKeyTyped
 
     /**
      * @param args the command line arguments
@@ -386,22 +444,78 @@ public class PagoMensualidad extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel2 extends JPanel{
+
+    class FondoPanel2 extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/LoginIcon.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);
         }
     }
+
+    public void actualizarTabla() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_SOCIO_FK, CANTIDAD, TO_CHAR(FECHA, 'DD/MM/YYYY') FROM PAGOS";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            DefaultTableModel tblModel = (DefaultTableModel) tblPagos.getModel();
+            tblModel.setRowCount(0);
+
+            while (rs.next()) {
+                String id_Socio_fk = rs.getString("ID_SOCIO_FK");
+                String cantidad = rs.getString("CANTIDAD");
+                String fecha = rs.getString(3).substring(0, 10);
+
+                String tbData[] = {id_Socio_fk, cantidad, fecha};
+
+                tblModel.addRow(tbData);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    public void rellenarPagos() {
+        try {
+            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+            String sql = "SELECT ID_SOCIO_FK, CANTIDAD, FECHA,FROM PAGOS";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+                id_Socio_fk = rs.getString("ID_SOCIO");
+                cantidad = rs.getString("CANTIDAD");
+                fecha = rs.getString("FECHA");
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+    }
+
+    private String fecha() {
+        LocalDate fechaActual = LocalDate.now();
+
+        // Crear un formateador para el formato DD/MM/AAAA
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Formatear la fecha
+        String fechaFormateada = fechaActual.format(formateador);
+
+        return fechaFormateada;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
     private javax.swing.JButton botonEditar;
-    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonMenu;
     private javax.swing.JLabel fechaJL;
@@ -415,11 +529,11 @@ public class PagoMensualidad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JPanel numeroSocio;
     private javax.swing.JTextField numeroSocioTF;
     private javax.swing.JTextField pagoTF;
     private javax.swing.JLabel precioJL;
     private javax.swing.JLabel reporteJL;
+    private javax.swing.JTable tblPagos;
     // End of variables declaration//GEN-END:variables
 }
