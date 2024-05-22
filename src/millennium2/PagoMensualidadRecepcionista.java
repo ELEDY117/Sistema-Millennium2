@@ -57,11 +57,13 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                         switch (i) {
                             case 0:
                                 AdministrarSociosRecepcionista mf1 = new AdministrarSociosRecepcionista();
+                                mf1.setUsuario(dato);
                                 mf1.setVisible(true);
                                 paMeRe.dispose();
                                 break;
                             case 1:
                                 Recepcionista mf = new Recepcionista();
+                                mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 paMeRe.dispose();
                                 break;
@@ -71,13 +73,18 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                 .build();
     }
 
+    public void setUsuario(String dato) {
+        this.dato = dato;
+        recepcionistaJL.setText(dato);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        recepcionistaJL = new javax.swing.JLabel();
         LoginLogo = new FondoPanel2();
         reporteJL = new javax.swing.JLabel();
         botonMenu = new javax.swing.JButton();
@@ -104,10 +111,9 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(9, 17, 43));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 70));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Recepcionista");
+        recepcionistaJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
+        recepcionistaJL.setForeground(new java.awt.Color(255, 255, 255));
+        recepcionistaJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -146,7 +152,7 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(reporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(recepcionistaJL, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LoginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -161,7 +167,7 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                         .addComponent(reporteJL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(LoginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(recepcionistaJL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(17, 17, 17))
         );
 
@@ -358,7 +364,8 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMenuActionPerformed
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
-        //INSERT DE PAGO
+        int bandera = 0;
+//INSERT DE PAGO
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             String sql1 = "INSERT INTO PAGOS(ID_SOCIO_FK, CANTIDAD, FECHA) VALUES(?,?,?)";
@@ -369,38 +376,42 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
                 pst.setString(1, numeroSocioTF.getText());
             }
             if (pagoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "");
+                JOptionPane.showMessageDialog(null, "Ingrese un precio en el boton actualizar precios");
             } else {
                 pst.setString(2, pagoTF.getText());
             }
             pst.setString(3, fecha());
             pst.executeUpdate();
+            bandera = 1;
             JOptionPane.showMessageDialog(null, "Pago ingresado exitosamente");
             actualizarTabla();
         } catch (SQLException ex) {
             switch (ex.getErrorCode()) {
                 case 1400 ->
                     JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-
+                case 2291 ->
+                    JOptionPane.showMessageDialog(null, "El numero de identificacion del socio no existe");
                 default ->
                     JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
             }
         }
+        if (bandera == 0) {
 
-        //UPDATE PARA ESTATUS
-        try {
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
-            String sql1 = "UPDATE SOCIOS SET ID_ESTATUS_FK = '1' WHERE ID_SOCIO = ?";
-            pst = con.prepareStatement(sql1);
-            pst.setString(1, numeroSocioTF.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Estado del socio modificado");
+        } else {
+            //UPDATE PARA ESTATUS
+            try {
+                con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
+                String sql1 = "UPDATE SOCIOS SET ID_ESTATUS_FK = '1' WHERE ID_SOCIO = ?";
+                pst = con.prepareStatement(sql1);
+                pst.setString(1, numeroSocioTF.getText());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Estado del socio modificado");
 
-        } catch (SQLException ex) {
-            switch (ex.getErrorCode()) {
-
-                default ->
-                    JOptionPane.showMessageDialog(null, "No se ha podido completar la accion, revise la información");
+            } catch (SQLException ex) {
+                switch (ex.getErrorCode()) {
+                    default ->
+                        JOptionPane.showMessageDialog(null, "No se ha podido completar la accion, revise la información");
+                }
             }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
@@ -513,7 +524,6 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
     private javax.swing.JLabel fechaJL1;
     private javax.swing.JTextField fechaTF;
     private javax.swing.JLabel generarReporteJL;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -522,6 +532,7 @@ public class PagoMensualidadRecepcionista extends javax.swing.JFrame {
     private javax.swing.JTextField numeroSocioTF;
     private javax.swing.JTextField pagoTF;
     private javax.swing.JLabel precioJL;
+    private javax.swing.JLabel recepcionistaJL;
     private javax.swing.JLabel reporteJL;
     private javax.swing.JTable tblPagos;
     // End of variables declaration//GEN-END:variables

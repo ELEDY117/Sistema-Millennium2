@@ -71,6 +71,7 @@ public class AdministrarSociosRecepcionista extends javax.swing.JFrame {
                                 break;
                             case 1:
                                 PagoMensualidadRecepcionista mf1 = new PagoMensualidadRecepcionista();
+                                mf1.setUsuario(dato);
                                 mf1.setVisible(true);
                                 adminSos.dispose();
                                 break;

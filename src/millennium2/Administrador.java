@@ -66,6 +66,7 @@ public class Administrador extends javax.swing.JFrame {
                             break;
                             case 2:
                                 Reporte mf2 = new Reporte();
+                                mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 admin.dispose();
                             break;

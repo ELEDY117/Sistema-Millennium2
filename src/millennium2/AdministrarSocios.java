@@ -71,6 +71,7 @@ public class AdministrarSocios extends javax.swing.JFrame {
                                 break;
                             case 1:
                                 PagoMensualidad mf1 = new PagoMensualidad();
+                                mf1.setUsuario(dato);
                                 mf1.setVisible(true);
                                 adminSos.dispose();
                                 break;

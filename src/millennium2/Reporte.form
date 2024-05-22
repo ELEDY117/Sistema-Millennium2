@@ -322,7 +322,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="reporteJL" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace pref="488" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="125" max="-2" attributes="0"/>
+                      <Component id="administradorJL" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="LoginLogo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
@@ -337,7 +337,7 @@
                           <Component id="botonMenu" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="LoginLogo" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="administradorJL" alignment="0" max="32767" attributes="0"/>
                               <Component id="reporteJL" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -347,7 +347,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="administradorJL">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Microsoft JhengHei UI Light" size="18" style="2"/>

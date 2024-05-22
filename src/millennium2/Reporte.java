@@ -42,6 +42,7 @@ public class Reporte extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    private String dato = "";
 
     public Reporte() {
         initComponents();
@@ -61,17 +62,24 @@ public class Reporte extends javax.swing.JFrame {
                         switch (i) {
                             case 0:
                                 AdministrarUsuarios mf2 = new AdministrarUsuarios();
+                                mf2.setUsuario(dato);
                                 mf2.setVisible(true);
                                 re.dispose();
                                 break;
                             case 1:
                                 Administrador mf = new Administrador();
+                                mf.setUsuario(dato);
                                 mf.setVisible(true);
                                 re.dispose();
                                 break;
                         }
                     }
                 }).build();
+    }
+    
+    public void setUsuario(String dato) {
+        this.dato = dato;
+        administradorJL.setText(dato);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +98,7 @@ public class Reporte extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaReporte = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        administradorJL = new javax.swing.JLabel();
         LoginLogo = new FondoPanel2();
         reporteJL = new javax.swing.JLabel();
         botonMenu = new javax.swing.JButton();
@@ -229,9 +237,9 @@ public class Reporte extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(9, 17, 43));
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 70));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        administradorJL.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 2, 18)); // NOI18N
+        administradorJL.setForeground(new java.awt.Color(255, 255, 255));
+        administradorJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout LoginLogoLayout = new javax.swing.GroupLayout(LoginLogo);
         LoginLogo.setLayout(LoginLogoLayout);
@@ -270,7 +278,7 @@ public class Reporte extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(reporteJL, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 488, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(administradorJL, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LoginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -283,7 +291,7 @@ public class Reporte extends javax.swing.JFrame {
                     .addComponent(botonMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(LoginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(administradorJL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(reporteJL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(17, 17, 17))
         );
@@ -352,6 +360,9 @@ public class Reporte extends javax.swing.JFrame {
                         datosdelreporte = new PdfPCell(new Phrase("Estatus"));
                     }
                     case 3 -> {
+                        datosdelreporte = new PdfPCell(new Phrase("Fecha"));
+                    }
+                    case 4 -> {
                         datosdelreporte = new PdfPCell(new Phrase("Fecha"));
                     }
                 }
@@ -445,8 +456,8 @@ public class Reporte extends javax.swing.JFrame {
                         }
                     });
 
-                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la primera fecha: ", "Primera Fecha", JOptionPane.QUESTION_MESSAGE);
-                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la segunda fecha: ", "Segunda Fecha", JOptionPane.QUESTION_MESSAGE);
+                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la fecha inicial: ", "Fecha inicial", JOptionPane.QUESTION_MESSAGE);
+                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la fecha final: ", "Fecha final", JOptionPane.QUESTION_MESSAGE);
                     con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                     pst = con.prepareStatement("SELECT ID_SOCIO, NOMBRE, APELLIDO_P, APELLIDO_M, TO_CHAR(INSCRIPCION,'DD/MM/YYYY') FROM SOCIOS WHERE INSCRIPCION BETWEEN ? AND ? ORDER BY INSCRIPCION DESC");
                     pst.setString(1, fecha1);
@@ -468,7 +479,7 @@ public class Reporte extends javax.swing.JFrame {
                     }
 
                 } catch (NumberFormatException | SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex.toString());
+                    JOptionPane.showMessageDialog(null, "Ingrese fechas validas para el reporte");
                 }
             }
             case 1 -> {
@@ -583,8 +594,8 @@ public class Reporte extends javax.swing.JFrame {
                     }
                 });
                 try {
-                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la primera fecha: ", "Primera Fecha", JOptionPane.QUESTION_MESSAGE);
-                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la segunda fecha: ", "Segunda Fecha", JOptionPane.QUESTION_MESSAGE);
+                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la fecha inicial: ", "Fecha inicial", JOptionPane.QUESTION_MESSAGE);
+                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la fecha final: ", "Fecha final", JOptionPane.QUESTION_MESSAGE);
                     con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                     pst = con.prepareStatement("SELECT ID_VISITANTE, NOMBRE, APELLIDO_P, APELLIDO_M, TO_CHAR(FECHA_VISITA,'DD/MM/YYYY') FROM VISITAS WHERE FECHA_VISITA BETWEEN ? AND ? ORDER BY FECHA_VISITA DESC");
                     pst.setString(1, fecha1);
@@ -610,15 +621,8 @@ public class Reporte extends javax.swing.JFrame {
 
                     }
 
-                } catch (SQLException ex) {
-                    switch (ex.getErrorCode()) {
-                        case 1400 ->
-                            JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-                        case 1 ->
-                            JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
-                        default ->
-                            JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
-                    }
+                } catch (NumberFormatException | SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Ingrese fechas validas para el reporte");
                 }
             }
 
@@ -644,8 +648,8 @@ public class Reporte extends javax.swing.JFrame {
                 });
 
                 try {
-                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la primera fecha: ", "Primera Fecha", JOptionPane.QUESTION_MESSAGE);
-                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la segunda fecha: ", "Segunda Fecha", JOptionPane.QUESTION_MESSAGE);
+                    String fecha1 = JOptionPane.showInputDialog(null, "Ingrese la fecha inicial: ", "Fecha inicial", JOptionPane.QUESTION_MESSAGE);
+                    String fecha2 = JOptionPane.showInputDialog(null, "Ingrese la fecha final: ", "Fecha final", JOptionPane.QUESTION_MESSAGE);
                     con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
                     pst = con.prepareStatement("SELECT ID_SOCIO_FK, NOMBRE, APELLIDO_P, APELLIDO_M, TO_CHAR(FECHA,'DD/MM/YYYY') FROM SOCIOS, PAGOS WHERE PAGOS.ID_SOCIO_FK = SOCIOS.ID_SOCIO AND FECHA BETWEEN ? AND ? ORDER BY FECHA DESC");
                     pst.setString(1, fecha1);
@@ -670,15 +674,8 @@ public class Reporte extends javax.swing.JFrame {
                         tblModel.addRow(tbData);
 
                     }
-                } catch (SQLException ex) {
-                    switch (ex.getErrorCode()) {
-                        case 1400 ->
-                            JOptionPane.showMessageDialog(null, "Ningun campo puede quedar vacio");
-                        case 1 ->
-                            JOptionPane.showMessageDialog(null, "El numero de identificacion que intenta ingresar ya existe");
-                        default ->
-                            JOptionPane.showMessageDialog(null, "No se ha podido completar la acción, revise la información");
-                    }
+                } catch (NumberFormatException | SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Ingrese fechas validas para el reporte");
                 }
             }
         }
@@ -695,6 +692,7 @@ public class Reporte extends javax.swing.JFrame {
                 new Reporte().setVisible(true);
             }
         });
+
     }
 
     class FondoPanel2 extends JPanel {
@@ -711,11 +709,11 @@ public class Reporte extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginLogo;
+    private javax.swing.JLabel administradorJL;
     private javax.swing.JButton botonGenerar;
     private javax.swing.JButton botonGenerarPDF;
     private javax.swing.JButton botonMenu;
     private javax.swing.JLabel generarReporteJL;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
