@@ -34,6 +34,7 @@ public class EditarUsuarios extends javax.swing.JFrame {
     public EditarUsuarios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         rellenarCbxTipoUsuario();
         AdministrarUsuarios ventana = new AdministrarUsuarios();
         numeroIdentificacionTF.setText(ventana.id_Usuarios);

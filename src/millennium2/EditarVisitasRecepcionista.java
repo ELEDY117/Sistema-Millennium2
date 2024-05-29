@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javaswingdev.drawer.Drawer;
 import javaswingdev.drawer.DrawerController;
@@ -34,6 +33,7 @@ public class EditarVisitasRecepcionista extends javax.swing.JFrame {
     public EditarVisitasRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         AdministrarVisitasRecepcionista ventana = new AdministrarVisitasRecepcionista();
         numeroVisitanteTF.setText(ventana.id_Visitas);
         nombreTF.setText(ventana.nombre);
@@ -215,7 +215,7 @@ public class EditarVisitasRecepcionista extends javax.swing.JFrame {
 
         telefonoJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
         telefonoJL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        telefonoJL.setText("Teléfeno");
+        telefonoJL.setText("Teléfono");
         telefonoJL.setPreferredSize(new java.awt.Dimension(70, 20));
 
         direccionJL.setFont(new java.awt.Font("Microsoft YaHei UI Light", 2, 14)); // NOI18N
@@ -497,33 +497,33 @@ public class EditarVisitasRecepcionista extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");
             pst = con.prepareStatement("UPDATE VISITAS SET NOMBRE= ?, APELLIDO_P= ?, APELLIDO_M= ?, TELEFONO= ?, NUM_EMERGENCIA= ?, FECHA_VISITA= ?, DIRECCION=? WHERE ID_VISITANTE=? ");
             if (nombreTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el nombre del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el nombre del visitante");
             } else {
                 pst.setString(1, nombreTF.getText());
             }
             if (apellidoPaternoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido paterno del visitante");
             } else {
                 pst.setString(2, apellidoPaternoTF.getText());
             }
             if (apellidoMaternoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el apellido materno del visitante");
             } else {
                 pst.setString(3, apellidoMaternoTF.getText());
             }
             if (telefonoTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el numero de telefono del visitante");
             } else {
                 pst.setString(4, telefonoTF.getText());
             }
             if (contactoEmergenciaTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del socio");
+                JOptionPane.showMessageDialog(null, "Escriba el numero del contacto de emergencia del visitante");
             } else {
                 pst.setString(5, contactoEmergenciaTF.getText());
             }
             pst.setString(6, fechaTF.getText());
             if (calleTF.getText().equals("") || numeroTF.getText().equals("") || coloniaTF.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del socio");
+                JOptionPane.showMessageDialog(null, "Escriba la direccion completa del visitante");
             } else {
                 pst.setString(7, calleTF.getText() + ", " + numeroTF.getText() + ", " + coloniaTF.getText());
             }

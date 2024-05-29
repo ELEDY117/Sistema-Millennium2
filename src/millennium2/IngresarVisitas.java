@@ -37,6 +37,7 @@ public class IngresarVisitas extends javax.swing.JFrame {
     public IngresarVisitas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         fechaTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

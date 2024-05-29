@@ -23,7 +23,6 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
     PreparedStatement pst2 = null;
     ResultSet rs = null;
     ResultSet rs2 = null;
-
     public InicioSesionFormulario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -157,11 +156,6 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
                 iniciarSesiónBtnActionPerformed(evt);
             }
         });
-        iniciarSesiónBtn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                iniciarSesiónBtnKeyPressed(evt);
-            }
-        });
 
         cambiarContraseñaBtn.setBackground(new java.awt.Color(166, 44, 26));
         cambiarContraseñaBtn.setFont(new java.awt.Font("Yu Gothic UI Light", 2, 12)); // NOI18N
@@ -270,10 +264,6 @@ public class InicioSesionFormulario extends javax.swing.JFrame {
     private void passwordPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordPFActionPerformed
         conexion();
     }//GEN-LAST:event_passwordPFActionPerformed
-
-    private void iniciarSesiónBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iniciarSesiónBtnKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iniciarSesiónBtnKeyPressed
 
     private void usuarioTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioTFActionPerformed
         // TODO add your handling code here:

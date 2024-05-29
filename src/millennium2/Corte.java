@@ -24,6 +24,7 @@ public class Corte extends javax.swing.JFrame {
     public Corte() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))

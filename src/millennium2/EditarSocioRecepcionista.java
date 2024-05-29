@@ -34,6 +34,7 @@ public class EditarSocioRecepcionista extends javax.swing.JFrame {
     public EditarSocioRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         rellenarCbxEstatus();
         AdministrarSociosRecepcionista ventana = new AdministrarSociosRecepcionista();
         numeroIdentificacionTF.setText(ventana.id_Socios);

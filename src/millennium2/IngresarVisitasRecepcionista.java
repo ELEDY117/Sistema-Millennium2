@@ -37,6 +37,7 @@ public class IngresarVisitasRecepcionista extends javax.swing.JFrame {
     public IngresarVisitasRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         fechaTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

@@ -359,7 +359,7 @@
                   <Font name="Microsoft YaHei UI Light" size="14" style="2"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Tel&#xe9;feno"/>
+                <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[70, 20]"/>
                 </Property>

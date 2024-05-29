@@ -47,6 +47,7 @@ public class AdministrarSociosRecepcionista extends javax.swing.JFrame {
     public AdministrarSociosRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         actualizarTabla();
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

@@ -47,6 +47,7 @@ public class AdministrarVisitas extends javax.swing.JFrame {
     public AdministrarVisitas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         actualizarTabla();
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

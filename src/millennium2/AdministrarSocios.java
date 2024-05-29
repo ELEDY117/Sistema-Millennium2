@@ -47,6 +47,7 @@ public class AdministrarSocios extends javax.swing.JFrame {
     public AdministrarSocios() {
         initComponents();
         this.setLocationRelativeTo(null);
+       //this.setExtendedState(this.MAXIMIZED_BOTH);
         actualizarTabla();
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

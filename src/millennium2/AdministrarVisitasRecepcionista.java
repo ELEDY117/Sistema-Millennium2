@@ -47,6 +47,7 @@ public class AdministrarVisitasRecepcionista extends javax.swing.JFrame {
     public AdministrarVisitasRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         actualizarTabla();
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
@@ -377,7 +378,7 @@ public class AdministrarVisitasRecepcionista extends javax.swing.JFrame {
 
         }
     }
-    
+
     public void rellenarVisitaRecepcionista() {
         try {
             con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "MILLENNIUM2", "MILLENNIUM2");

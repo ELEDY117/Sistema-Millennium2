@@ -47,6 +47,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
     public AdministrarUsuarios() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         actualizarTabla();
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

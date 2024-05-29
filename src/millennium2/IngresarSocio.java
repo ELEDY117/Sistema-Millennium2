@@ -36,7 +36,7 @@ public class IngresarSocio extends javax.swing.JFrame {
     public IngresarSocio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //RellenarCbxDomicilio();
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         inscripcionTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))

@@ -34,6 +34,7 @@ public class EditarSocio extends javax.swing.JFrame {
     public EditarSocio() {
         initComponents();
         this.setLocationRelativeTo(null);
+       //this.setExtendedState(this.MAXIMIZED_BOTH);
         rellenarCbxEstatus();
         AdministrarSocios ventana = new AdministrarSocios();
         numeroIdentificacionTF.setText(ventana.id_Socios);

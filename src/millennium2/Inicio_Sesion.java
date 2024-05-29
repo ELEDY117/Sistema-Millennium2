@@ -11,12 +11,13 @@ import javax.swing.JPanel;
  * @author esgar
  */
 public class Inicio_Sesion extends javax.swing.JFrame {
-    
+
     public Inicio_Sesion() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,17 +100,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
         millenniumLogo5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         millenniumLogo5.setPreferredSize(new java.awt.Dimension(400, 200));
-
-        javax.swing.GroupLayout millenniumLogo5Layout = new javax.swing.GroupLayout(millenniumLogo5);
-        millenniumLogo5.setLayout(millenniumLogo5Layout);
-        millenniumLogo5Layout.setHorizontalGroup(
-            millenniumLogo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        millenniumLogo5Layout.setVerticalGroup(
-            millenniumLogo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
+        millenniumLogo5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,7 +132,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         mf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonLoginActionPerformed
-    
+
     public static void main(String args[]) {
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
@@ -151,12 +142,13 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel extends JPanel{
+
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint (Graphics g){
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/imagenes/MillenniumLogo.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);

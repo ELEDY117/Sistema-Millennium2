@@ -25,6 +25,7 @@ public class Recepcionista extends javax.swing.JFrame {
     public Recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+       //this.setExtendedState(this.MAXIMIZED_BOTH);
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
                 .separator(2, new Color(255, 255, 255))

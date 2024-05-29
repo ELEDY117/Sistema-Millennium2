@@ -36,7 +36,7 @@ public class IngresarSocioRecepcionista extends javax.swing.JFrame {
     public IngresarSocioRecepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //RellenarCbxDomicilio();
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
         inscripcionTF.setText(fecha());
         drawer = Drawer.newDrawer(this)
                 .header(new JLabel("    Menu"))
